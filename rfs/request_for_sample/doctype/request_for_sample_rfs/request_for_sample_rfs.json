@@ -1,0 +1,320 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-12-28 00:37:09.401100",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_tab",
+  "naming_series",
+  "project",
+  "project_name_sidemark",
+  "section_break_5",
+  "request_date",
+  "required_ship_date",
+  "email",
+  "add_from_email_groups",
+  "sample_detail_tab",
+  "detailed_sample_description",
+  "section_break_11",
+  "material_type",
+  "sample_template",
+  "column_break_12",
+  "minimum_samples_needed",
+  "minimum_size",
+  "total_samples_needed",
+  "section_break_16",
+  "sample_details",
+  "label_requirements_section",
+  "label_requirements",
+  "column_break_22",
+  "create_label",
+  "proposed_sample_detail_tab",
+  "we_are_sending_a_sample_to_be_matched",
+  "section_break_22",
+  "proposed_sample_sent_to",
+  "proposed_sample_attention",
+  "column_break_18",
+  "proposed_sample_via",
+  "proposed_sample_tracking_no",
+  "section_break_31",
+  "our_sample_pictures",
+  "shipment_sample_detail_tab",
+  "heading_28",
+  "section_break_29",
+  "proof_shipment_sample_sent_to",
+  "column_break_24",
+  "shipment_sample_via",
+  "shipment_sample_tracking_no",
+  "section_break_39",
+  "factory_sample_pictures",
+  "price_quote_section",
+  "fob_point",
+  "fob_price_usd_per_m2"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "default": "RFS-.#",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "naming_series",
+   "options": "RFS-.#"
+  },
+  {
+   "default": "Today",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "description": "All documents and resulting samples pertaining to the Project Name referenced above must reference the Project Number and Name (side mark). \nFor help with identification, please include this document with all correspondence related to this project.",
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name_sidemark",
+   "fieldtype": "Data",
+   "label": "Project Name (sidemark)"
+  },
+  {
+   "fieldname": "required_ship_date",
+   "fieldtype": "Date",
+   "label": "Required Ship Date (no later than date)"
+  },
+  {
+   "fieldname": "sample_detail_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sample Detail"
+  },
+  {
+   "fieldname": "minimum_samples_needed",
+   "fieldtype": "Data",
+   "label": "Minimum Samples Needed"
+  },
+  {
+   "fieldname": "minimum_size",
+   "fieldtype": "Data",
+   "label": "Minimum Size"
+  },
+  {
+   "fieldname": "total_samples_needed",
+   "fieldtype": "Data",
+   "label": "Total Samples Needed"
+  },
+  {
+   "fieldname": "material_type",
+   "fieldtype": "Link",
+   "label": "Material Type",
+   "options": "Product Material Type RFS"
+  },
+  {
+   "fieldname": "proposed_sample_detail_tab",
+   "fieldtype": "Tab Break",
+   "label": "Our Sample Detail"
+  },
+  {
+   "fieldname": "shipment_sample_detail_tab",
+   "fieldtype": "Tab Break",
+   "label": "Supplier Sample Detail"
+  },
+  {
+   "fieldname": "proposed_sample_sent_to",
+   "fieldtype": "Small Text",
+   "label": "Proposed Sample Sent To"
+  },
+  {
+   "fieldname": "proposed_sample_attention",
+   "fieldtype": "Data",
+   "label": "Proposed Sample Attention"
+  },
+  {
+   "fieldname": "proposed_sample_via",
+   "fieldtype": "Data",
+   "label": "Proposed Sample VIA"
+  },
+  {
+   "fieldname": "proposed_sample_tracking_no",
+   "fieldtype": "Data",
+   "label": "Proposed Sample Tracking no"
+  },
+  {
+   "fieldname": "proof_shipment_sample_sent_to",
+   "fieldtype": "Small Text",
+   "label": "Proof Shipment sample sent to"
+  },
+  {
+   "fieldname": "shipment_sample_via",
+   "fieldtype": "Data",
+   "label": "Shipment Sample VIA"
+  },
+  {
+   "fieldname": "shipment_sample_tracking_no",
+   "fieldtype": "Data",
+   "label": "Shipment Sample Tracking no"
+  },
+  {
+   "description": "Once all the details have been agreed on, the factory should provide (or confirm) quoted price",
+   "fieldname": "price_quote_section",
+   "fieldtype": "Section Break",
+   "label": "Price Quote"
+  },
+  {
+   "fieldname": "fob_point",
+   "fieldtype": "Data",
+   "label": "FOB Point"
+  },
+  {
+   "fieldname": "fob_price_usd_per_m2",
+   "fieldtype": "Currency",
+   "label": "FOB Price USD per M2"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sample_template",
+   "fieldtype": "Link",
+   "label": "Sample Template",
+   "options": "Sample Template RFS"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sample_details",
+   "fieldtype": "Table",
+   "label": "Product Specifications",
+   "options": "Parameter For Sample Detail RFS"
+  },
+  {
+   "fieldname": "detailed_sample_description",
+   "fieldtype": "Small Text",
+   "label": "Detailed Sample Description"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Information of Proof Sample Shipment from Factory",
+   "fieldname": "heading_28",
+   "fieldtype": "Heading",
+   "label": "Information of Proof Sample Shipment from Factory"
+  },
+  {
+   "fieldname": "section_break_29",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "we_are_sending_a_sample_to_be_matched",
+   "fieldtype": "Heading",
+   "label": "We are sending a sample to be matched"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:!cur_frm.doc.__islocal",
+   "fieldname": "label_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Label Requirements"
+  },
+  {
+   "fieldname": "label_requirements",
+   "fieldtype": "HTML",
+   "label": "Preview"
+  },
+  {
+   "fieldname": "section_break_31",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "our_sample_pictures",
+   "fieldtype": "Table",
+   "label": "Proposed Sample Pictures",
+   "options": "Samples RFS"
+  },
+  {
+   "fieldname": "section_break_39",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "factory_sample_pictures",
+   "fieldtype": "Table",
+   "label": "Factory Sample Pictures",
+   "options": "Samples RFS"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "create_label",
+   "fieldtype": "Small Text",
+   "label": "Label Content"
+  },
+  {
+   "description": "Specify multiple emails separated by commas(,)",
+   "fieldname": "email",
+   "fieldtype": "Small Text",
+   "label": "Email List"
+  },
+  {
+   "fieldname": "add_from_email_groups",
+   "fieldtype": "Button",
+   "label": "Add From Email Groups"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-01-06 02:43:54.097466",
+ "modified_by": "Administrator",
+ "module": "Request For Sample",
+ "name": "Request For Sample RFS",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
