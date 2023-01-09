@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:material_type",
  "creation": "2022-12-28 00:20:32.818814",
@@ -20,7 +21,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-12-28 00:20:32.818814",
+ "modified": "2023-01-09 05:21:20.298982",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Product Material Type RFS",

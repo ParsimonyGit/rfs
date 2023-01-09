@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:template_name",
  "creation": "2022-12-28 01:58:15.043093",
@@ -29,7 +30,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-12-29 22:18:14.794677",
+ "modified": "2023-01-09 05:20:58.274435",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Sample Template RFS",
