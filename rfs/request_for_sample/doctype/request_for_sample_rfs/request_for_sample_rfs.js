@@ -2,7 +2,53 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Request For Sample RFS', {
+	supplier_address:function (frm) {
+		frappe.call('rfs.request_for_sample.doctype.request_for_sample_rfs.request_for_sample_rfs.get_supplier_address_html', {
+			address: frm.doc.supplier_address
+		}).then(r => {
+			// $(frm.fields_dict.label_requirements.wrapper).empty().html(r.message);
+			frm.set_value('proposed_sample_sent_to', r.message)
+		})
+	},
+	supplier: function (frm) {
+		frappe.db.get_list('Dynamic Link', {
+			fields: ['parent'],
+			filters: {
+				link_doctype: 'Supplier',
+				link_name: frm.doc.supplier,
+				parenttype: 'Address',
+				parentfield: 'links'
+			},
+			as_list: 1
+		}).then(records => {
+			if (records && records.length > 0) {
+				let filter_add = records.flat()
+				frm.set_query('supplier_address', () => {
+					return {
+						filters: {
+							name: ['in', filter_add]
+						}
+					}
+				})
+			}
+		})
+
+	},
 	refresh: function(frm) {
+		if (!frm.doc.__islocal && frm.doc.our_sample_pictures && frm.doc.our_sample_pictures.length > 0) {
+			$(frm.fields_dict.proposed_sample_pictures_display.wrapper).empty().html(
+				frappe.render_template('display_image', {
+					data: frm.doc.our_sample_pictures
+				})
+			)
+		}
+		if (!frm.doc.__islocal && frm.doc.factory_sample_pictures && frm.doc.factory_sample_pictures.length > 0) {
+			$(frm.fields_dict.shipment_sample_pictures_display.wrapper).empty().html(
+				frappe.render_template('display_image', {
+					data: frm.doc.factory_sample_pictures
+				})
+			)
+		}		
 		if(!frm.doc.__islocal && frm.doc.create_label &&  frm.doc.create_label.length>0 ) {
 			let data=frm.doc.create_label
 			let result= data.replaceAll('\n', '<br/>');
@@ -72,7 +118,6 @@ frappe.ui.form.on('Request For Sample RFS', {
 		}
 	}
 });
-
 
 frappe.ui.form.on('Samples RFS', {
 	our_sample_pictures_add: function(frm, cdt, cdn){

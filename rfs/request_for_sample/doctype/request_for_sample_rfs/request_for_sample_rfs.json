@@ -21,10 +21,11 @@
   "sample_detail_tab",
   "detailed_sample_description",
   "section_break_11",
+  "supplier",
   "material_type",
   "sample_template",
   "column_break_12",
-  "minimum_samples_needed",
+  "number_of_samples_needed",
   "minimum_size",
   "total_samples_needed",
   "section_break_16",
@@ -36,6 +37,7 @@
   "proposed_sample_detail_tab",
   "we_are_sending_a_sample_to_be_matched",
   "section_break_22",
+  "supplier_address",
   "proposed_sample_sent_to",
   "proposed_sample_attention",
   "column_break_18",
@@ -43,17 +45,21 @@
   "proposed_sample_tracking_no",
   "section_break_31",
   "our_sample_pictures",
+  "proposed_sample_pictures_display",
   "shipment_sample_detail_tab",
   "heading_28",
   "section_break_29",
   "proof_shipment_sample_sent_to",
+  "shipment_sample_attention",
   "column_break_24",
   "shipment_sample_via",
   "shipment_sample_tracking_no",
   "section_break_39",
   "factory_sample_pictures",
+  "shipment_sample_pictures_display",
   "price_quote_section",
   "fob_point",
+  "column_break_46",
   "fob_price_usd_per_m2"
  ],
  "fields": [
@@ -79,6 +85,8 @@
   {
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Project",
    "options": "Project"
   },
@@ -87,6 +95,8 @@
    "fetch_from": "project.project_name",
    "fieldname": "project_name_sidemark",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Project Name (sidemark)"
   },
   {
@@ -98,11 +108,6 @@
    "fieldname": "sample_detail_tab",
    "fieldtype": "Tab Break",
    "label": "Sample Detail"
-  },
-  {
-   "fieldname": "minimum_samples_needed",
-   "fieldtype": "Data",
-   "label": "Minimum Samples Needed"
   },
   {
    "fieldname": "minimum_size",
@@ -142,8 +147,9 @@
   },
   {
    "fieldname": "proposed_sample_via",
-   "fieldtype": "Data",
-   "label": "Proposed Sample VIA"
+   "fieldtype": "Link",
+   "label": "Proposed Sample VIA",
+   "options": "Proposed Sample VIA RFS"
   },
   {
    "fieldname": "proposed_sample_tracking_no",
@@ -157,8 +163,9 @@
   },
   {
    "fieldname": "shipment_sample_via",
-   "fieldtype": "Data",
-   "label": "Shipment Sample VIA"
+   "fieldtype": "Link",
+   "label": "Shipment Sample VIA",
+   "options": "Shipment Sample VIA RFS"
   },
   {
    "fieldname": "shipment_sample_tracking_no",
@@ -291,11 +298,46 @@
    "fieldname": "add_from_email_groups",
    "fieldtype": "Button",
    "label": "Add From Email Groups"
+  },
+  {
+   "fieldname": "column_break_46",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_samples_needed",
+   "fieldtype": "Data",
+   "label": "Number of Samples Needed"
+  },
+  {
+   "fieldname": "shipment_sample_attention",
+   "fieldtype": "Data",
+   "label": "Shipment Sample Attention"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "supplier_address",
+   "fieldtype": "Link",
+   "label": "Supplier Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "proposed_sample_pictures_display",
+   "fieldtype": "HTML",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "shipment_sample_pictures_display",
+   "fieldtype": "HTML"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-09 05:20:43.898541",
+ "modified": "2023-01-11 22:09:17.772750",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",

@@ -28,3 +28,10 @@ def get_sample_template_details(sample_template_name):
 	for i, parameter_row in enumerate(sample_template.get("template_parameters")):
 		sample_template_details.append({'parameter':parameter_row.get('parameter'),'value':parameter_row.get('value')})
 	return sample_template_details
+
+@frappe.whitelist()
+def get_supplier_address_html(address):
+	address_display = ""
+	if address:
+		address_display = frappe.get_doc("Address", address).get_display()
+	return address_display	
