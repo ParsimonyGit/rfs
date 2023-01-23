@@ -49,9 +49,10 @@
   "shipment_sample_detail_tab",
   "heading_28",
   "section_break_29",
+  "company_address",
   "proof_shipment_sample_sent_to",
-  "shipment_sample_attention",
   "column_break_24",
+  "shipment_sample_attention",
   "shipment_sample_via",
   "shipment_sample_tracking_no",
   "section_break_39",
@@ -138,7 +139,8 @@
   {
    "fieldname": "proposed_sample_sent_to",
    "fieldtype": "Small Text",
-   "label": "Proposed Sample Sent To"
+   "label": "Proposed Sample Sent To",
+   "read_only": 1
   },
   {
    "fieldname": "proposed_sample_attention",
@@ -159,7 +161,8 @@
   {
    "fieldname": "proof_shipment_sample_sent_to",
    "fieldtype": "Small Text",
-   "label": "Proof Shipment sample sent to"
+   "label": "Proof Shipment sample sent to",
+   "read_only": 1
   },
   {
    "fieldname": "shipment_sample_via",
@@ -323,7 +326,8 @@
    "fieldname": "supplier_address",
    "fieldtype": "Link",
    "label": "Supplier Address",
-   "options": "Address"
+   "options": "Address",
+   "print_hide": 1
   },
   {
    "fieldname": "proposed_sample_pictures_display",
@@ -333,11 +337,18 @@
   {
    "fieldname": "shipment_sample_pictures_display",
    "fieldtype": "HTML"
+  },
+  {
+   "fieldname": "company_address",
+   "fieldtype": "Link",
+   "label": "Company Address Name",
+   "options": "Address",
+   "print_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-11 22:09:17.772750",
+ "modified": "2023-01-23 01:55:54.552339",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",

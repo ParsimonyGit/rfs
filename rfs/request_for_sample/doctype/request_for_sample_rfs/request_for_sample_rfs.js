@@ -2,38 +2,56 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Request For Sample RFS', {
+	onload_post_render: function (frm) {
+		const default_company = frappe.defaults.get_default('company');
+		frm.set_query('company_address', function(doc) {
+			return {
+				query: 'frappe.contacts.doctype.address.address.address_query',
+				filters: {
+					link_doctype: 'Company',
+					link_name: frappe.defaults.get_default('company')
+				}
+			};
+		});		
+			frappe.call({
+				method: "erpnext.setup.doctype.company.company.get_default_company_address",
+				args: {name:frappe.defaults.get_default('company'), existing_address: frm.doc.company_address || ""},
+				debounce: 2000,
+				callback: function(r){
+					if (r.message){
+						frm.set_value("company_address",r.message)
+					}
+					else {
+						frm.set_value("company_address","")
+					}
+				}
+			})
+	},
+	supplier: function(frm) {
+		frm.set_query('supplier_address', address_query('Supplier',frm.doc.supplier));
+	},
 	supplier_address:function (frm) {
 		frappe.call('rfs.request_for_sample.doctype.request_for_sample_rfs.request_for_sample_rfs.get_supplier_address_html', {
 			address: frm.doc.supplier_address
 		}).then(r => {
-			// $(frm.fields_dict.label_requirements.wrapper).empty().html(r.message);
 			frm.set_value('proposed_sample_sent_to', r.message)
 		})
 	},
-	supplier: function (frm) {
-		frappe.db.get_list('Dynamic Link', {
-			fields: ['parent'],
-			filters: {
-				link_doctype: 'Supplier',
-				link_name: frm.doc.supplier,
-				parenttype: 'Address',
-				parentfield: 'links'
-			},
-			as_list: 1
-		}).then(records => {
-			if (records && records.length > 0) {
-				let filter_add = records.flat()
-				frm.set_query('supplier_address', () => {
-					return {
-						filters: {
-							name: ['in', filter_add]
-						}
+	company_address(frm) {
+		if(frm.doc.company_address) {
+			frappe.call({
+				method: "frappe.contacts.doctype.address.address.get_address_display",
+				args: {"address_dict": frm.doc.company_address },
+				callback: function(r) {
+					if(r.message) {
+						me.frm.set_value("proof_shipment_sample_sent_to", r.message)
 					}
-				})
-			}
-		})
-
-	},
+				}
+			})
+		} else {
+			frm.set_value("proof_shipment_sample_sent_to", "");
+		}
+	},	
 	refresh: function(frm) {
 		if (!frm.doc.__islocal && frm.doc.our_sample_pictures && frm.doc.our_sample_pictures.length > 0) {
 			$(frm.fields_dict.proposed_sample_pictures_display.wrapper).empty().html(
@@ -41,6 +59,8 @@ frappe.ui.form.on('Request For Sample RFS', {
 					data: frm.doc.our_sample_pictures
 				})
 			)
+		}else{
+			$(frm.fields_dict.proposed_sample_pictures_display.wrapper).empty().html()
 		}
 		if (!frm.doc.__islocal && frm.doc.factory_sample_pictures && frm.doc.factory_sample_pictures.length > 0) {
 			$(frm.fields_dict.shipment_sample_pictures_display.wrapper).empty().html(
@@ -48,6 +68,8 @@ frappe.ui.form.on('Request For Sample RFS', {
 					data: frm.doc.factory_sample_pictures
 				})
 			)
+		}else{
+			$(frm.fields_dict.shipment_sample_pictures_display.wrapper).empty().html()
 		}		
 		if(!frm.doc.__islocal && frm.doc.create_label &&  frm.doc.create_label.length>0 ) {
 			let data=frm.doc.create_label
@@ -140,3 +162,14 @@ frappe.ui.form.on('Samples RFS', {
 		frappe.model.set_value(cdt, cdn, 'photo_id', "Photo "+child.idx);
 	}
 });
+
+function address_query(doctype,fieldname) {
+	debugger	
+		return {
+			query: 'frappe.contacts.doctype.address.address.address_query',
+			filters: {
+				'link_doctype': doctype,
+				'link_name': cur_frm.doc.supplier
+			}
+		};
+}
