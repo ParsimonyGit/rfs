@@ -13,19 +13,20 @@ frappe.ui.form.on('Request For Sample RFS', {
 				}
 			};
 		});		
-			frappe.call({
-				method: "erpnext.setup.doctype.company.company.get_default_company_address",
-				args: {name:frappe.defaults.get_default('company'), existing_address: frm.doc.company_address || ""},
-				debounce: 2000,
-				callback: function(r){
-					if (r.message){
-						frm.set_value("company_address",r.message)
-					}
-					else {
-						frm.set_value("company_address","")
-					}
-				}
-			})
+			//  code : to set default company address
+			// frappe.call({
+			// 	method: "erpnext.setup.doctype.company.company.get_default_company_address",
+			// 	args: {name:frappe.defaults.get_default('company'), existing_address: frm.doc.company_address || ""},
+			// 	debounce: 2000,
+			// 	callback: function(r){
+			// 		if (r.message){
+			// 			frm.set_value("company_address",r.message)
+			// 		}
+			// 		else {
+			// 			frm.set_value("company_address","")
+			// 		}
+			// 	}
+			// })
 	},
 	supplier: function(frm) {
 		frm.set_query('supplier_address', address_query('Supplier',frm.doc.supplier));
@@ -89,6 +90,8 @@ frappe.ui.form.on('Request For Sample RFS', {
 				</div>
 			</div>`
 			);
+			}else{
+				$(frm.fields_dict.label_requirements.wrapper).empty().html()
 			}		
 	},
 	add_from_email_groups: function(frm) {

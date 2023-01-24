@@ -64,8 +64,8 @@ app_license = "MIT"
 # ------------
 
 # before_install = "rfs.install.before_install"
-# after_install = "rfs.install.after_install"
-
+after_install = "rfs.install.create_connections"
+after_migrate = "rfs.migrations.create_connections"
 # Uninstallation
 # ------------
 

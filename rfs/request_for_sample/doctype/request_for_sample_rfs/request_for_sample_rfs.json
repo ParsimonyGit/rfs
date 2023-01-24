@@ -13,6 +13,7 @@
   "naming_series",
   "project",
   "project_name_sidemark",
+  "status",
   "section_break_5",
   "request_date",
   "required_ship_date",
@@ -98,7 +99,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Project Name (sidemark)"
+   "label": "Project Name (sidemark)",
+   "read_only": 1
   },
   {
    "fieldname": "required_ship_date",
@@ -252,7 +254,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval:!cur_frm.doc.__islocal",
    "fieldname": "label_requirements_section",
    "fieldtype": "Section Break",
    "label": "Label Requirements"
@@ -344,11 +345,20 @@
    "label": "Company Address Name",
    "options": "Address",
    "print_hide": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "RFS Status",
+   "options": "\nOpen\nIn Process\nCompleted\nClosed",
+   "print_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-23 01:55:54.552339",
+ "modified": "2023-01-23 21:38:29.709660",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
@@ -370,5 +380,22 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Light Blue",
+   "title": "Open"
+  },
+  {
+   "color": "Yellow",
+   "title": "In Process"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  },
+  {
+   "color": "Gray",
+   "title": "Closed"
+  }
+ ]
 }
