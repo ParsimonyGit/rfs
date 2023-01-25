@@ -1,0 +1,1 @@
+rfs.patches.delete_rfs_print_format_property_setter

@@ -71,12 +71,12 @@
    "label": "General"
   },
   {
-   "default": "RFS-.#",
+   "default": "RFS-.YYYY.-.####",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series",
-   "options": "RFS-.#"
+   "options": "RFS-.YYYY.-.####"
   },
   {
    "default": "Today",
@@ -358,7 +358,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-23 21:38:29.709660",
+ "modified": "2023-01-24 20:23:08.448374",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
