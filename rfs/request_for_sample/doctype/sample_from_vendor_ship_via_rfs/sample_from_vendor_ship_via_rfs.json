@@ -26,7 +26,7 @@
  "modified": "2023-01-11 20:00:07.690060",
  "modified_by": "Administrator",
  "module": "Request For Sample",
- "name": "Shipment Sample VIA RFS",
+ "name": "Sample from Vendor Ship VIA RFS",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

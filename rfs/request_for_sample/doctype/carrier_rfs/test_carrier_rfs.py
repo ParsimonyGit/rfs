@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestShipmentSampleVIARFS(FrappeTestCase):
+class TestCarrierRFS(FrappeTestCase):
 	pass

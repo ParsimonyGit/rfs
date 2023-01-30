@@ -23,13 +23,14 @@
   "detailed_sample_description",
   "section_break_11",
   "supplier",
+  "supplier_name",
   "material_type",
-  "sample_template",
   "column_break_12",
   "number_of_samples_needed",
   "minimum_size",
   "total_samples_needed",
   "section_break_16",
+  "sample_template",
   "sample_details",
   "label_requirements_section",
   "label_requirements",
@@ -43,6 +44,8 @@
   "proposed_sample_attention",
   "column_break_18",
   "proposed_sample_via",
+  "proposed_carrier_name",
+  "proposed_carrier_account",
   "proposed_sample_tracking_no",
   "section_break_31",
   "our_sample_pictures",
@@ -52,9 +55,11 @@
   "section_break_29",
   "company_address",
   "proof_shipment_sample_sent_to",
-  "column_break_24",
   "shipment_sample_attention",
+  "column_break_24",
   "shipment_sample_via",
+  "shipment_sample_carrier_name",
+  "shipment_sample_carrier_account",
   "shipment_sample_tracking_no",
   "section_break_39",
   "factory_sample_pictures",
@@ -62,7 +67,9 @@
   "price_quote_section",
   "fob_point",
   "column_break_46",
-  "fob_price_usd_per_m2"
+  "fob_price_usd_per_m2",
+  "column_break_55",
+  "fob_unit_of_measure"
  ],
  "fields": [
   {
@@ -71,12 +78,12 @@
    "label": "General"
   },
   {
-   "default": "RFS-.YYYY.-.####",
+   "default": "PUR-RFS-.YEAR.-.####",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series",
-   "options": "RFS-.YYYY.-.####"
+   "options": "PUR-RFS-.YEAR.-.####"
   },
   {
    "default": "Today",
@@ -152,13 +159,13 @@
   {
    "fieldname": "proposed_sample_via",
    "fieldtype": "Link",
-   "label": "Proposed Sample VIA",
-   "options": "Proposed Sample VIA RFS"
+   "label": "Sample To Vendor Ship VIA",
+   "options": "Sample To Vendor Ship VIA RFS"
   },
   {
    "fieldname": "proposed_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Proposed Sample Tracking no"
+   "label": "Sample to Vendor Tracking No."
   },
   {
    "fieldname": "proof_shipment_sample_sent_to",
@@ -169,13 +176,13 @@
   {
    "fieldname": "shipment_sample_via",
    "fieldtype": "Link",
-   "label": "Shipment Sample VIA",
-   "options": "Shipment Sample VIA RFS"
+   "label": "Sample from Vendor Ship VIA",
+   "options": "Sample from Vendor Ship VIA RFS"
   },
   {
    "fieldname": "shipment_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Shipment Sample Tracking no"
+   "label": "Sample from Vendor Tracking No."
   },
   {
    "description": "Once all the details have been agreed on, the factory should provide (or confirm) quoted price",
@@ -191,7 +198,7 @@
   {
    "fieldname": "fob_price_usd_per_m2",
    "fieldtype": "Currency",
-   "label": "FOB Price USD per M2"
+   "label": "FOB Price USD"
   },
   {
    "fieldname": "section_break_5",
@@ -354,11 +361,54 @@
    "label": "RFS Status",
    "options": "\nOpen\nIn Process\nCompleted\nClosed",
    "print_hide": 1
+  },
+  {
+   "fieldname": "column_break_55",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fob_unit_of_measure",
+   "fieldtype": "Link",
+   "label": "FOB Unit Of Measure",
+   "options": "UOM"
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "proposed_carrier_name",
+   "fieldtype": "Link",
+   "label": "Sample To Vendor Carrier",
+   "options": "Carrier RFS"
+  },
+  {
+   "fetch_from": "proposed_carrier_name.carrier_account",
+   "fieldname": "proposed_carrier_account",
+   "fieldtype": "Data",
+   "label": "Sample to Vendor Carrier Account",
+   "read_only": 1
+  },
+  {
+   "fieldname": "shipment_sample_carrier_name",
+   "fieldtype": "Link",
+   "label": "Sample from Vendor Carrier",
+   "options": "Carrier RFS"
+  },
+  {
+   "fetch_from": "shipment_sample_carrier_name.carrier_account",
+   "fieldname": "shipment_sample_carrier_account",
+   "fieldtype": "Data",
+   "label": "Sample from Vendor Carrier Account",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-24 20:23:08.448374",
+ "modified": "2023-01-27 20:25:02.292758",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",

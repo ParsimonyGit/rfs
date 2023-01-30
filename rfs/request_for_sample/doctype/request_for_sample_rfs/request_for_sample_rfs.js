@@ -145,6 +145,10 @@ frappe.ui.form.on('Request For Sample RFS', {
 });
 
 frappe.ui.form.on('Samples RFS', {
+	form_render: function(frm, cdt, cdn){
+		frm.meta.make_attachments_public=1
+		$("button[data-fieldname='attach_sample_image']").css({ 'background-color' : '#6da0f2'});
+	},
 	our_sample_pictures_add: function(frm, cdt, cdn){
 		let child = locals[cdt][cdn];
 		frappe.model.set_value(cdt, cdn, 'photo_id', "Photo "+child.idx);
@@ -167,7 +171,6 @@ frappe.ui.form.on('Samples RFS', {
 });
 
 function address_query(doctype,fieldname) {
-	debugger	
 		return {
 			query: 'frappe.contacts.doctype.address.address.address_query',
 			filters: {

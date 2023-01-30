@@ -1,32 +1,40 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:via",
- "creation": "2023-01-11 19:54:28.003705",
+ "autoname": "field:carrier_name",
+ "creation": "2023-01-27 03:12:05.932982",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "via"
+  "carrier_name",
+  "carrier_account"
  ],
  "fields": [
   {
    "allow_in_quick_entry": 1,
-   "fieldname": "via",
+   "fieldname": "carrier_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "VIA",
+   "label": "Carrier Name",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "carrier_account",
+   "fieldtype": "Link",
+   "label": "Carrier Account",
+   "options": "Account"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-11 19:54:28.003705",
+ "modified": "2023-01-27 20:16:47.738869",
  "modified_by": "Administrator",
  "module": "Request For Sample",
- "name": "Proposed Sample VIA RFS",
+ "name": "Carrier RFS",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -43,6 +51,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

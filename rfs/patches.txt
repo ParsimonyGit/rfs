@@ -1,2 +1,3 @@
 rfs.patches.delete_rfs_print_format_property_setter
 rfs.patches.delete_rfs_naming_series_property_setter
+rfs.patches.delete_rfs_2_naming_series_property_setter
