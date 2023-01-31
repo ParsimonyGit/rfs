@@ -165,7 +165,7 @@
   {
    "fieldname": "proposed_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Sample to Vendor Tracking No."
+   "label": "Sample To Vendor Tracking No."
   },
   {
    "fieldname": "proof_shipment_sample_sent_to",
@@ -176,13 +176,13 @@
   {
    "fieldname": "shipment_sample_via",
    "fieldtype": "Link",
-   "label": "Sample from Vendor Ship VIA",
-   "options": "Sample from Vendor Ship VIA RFS"
+   "label": "Sample From Vendor Ship VIA",
+   "options": "Sample From Vendor Ship VIA RFS"
   },
   {
    "fieldname": "shipment_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Sample from Vendor Tracking No."
+   "label": "Sample From Vendor Tracking No."
   },
   {
    "description": "Once all the details have been agreed on, the factory should provide (or confirm) quoted price",
@@ -389,26 +389,26 @@
    "fetch_from": "proposed_carrier_name.carrier_account",
    "fieldname": "proposed_carrier_account",
    "fieldtype": "Data",
-   "label": "Sample to Vendor Carrier Account",
+   "label": "Sample To Vendor Carrier Account",
    "read_only": 1
   },
   {
    "fieldname": "shipment_sample_carrier_name",
    "fieldtype": "Link",
-   "label": "Sample from Vendor Carrier",
+   "label": "Sample From Vendor Carrier",
    "options": "Carrier RFS"
   },
   {
    "fetch_from": "shipment_sample_carrier_name.carrier_account",
    "fieldname": "shipment_sample_carrier_account",
    "fieldtype": "Data",
-   "label": "Sample from Vendor Carrier Account",
+   "label": "Sample From Vendor Carrier Account",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-27 20:25:02.292758",
+ "modified": "2023-01-30 20:34:37.019206",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
