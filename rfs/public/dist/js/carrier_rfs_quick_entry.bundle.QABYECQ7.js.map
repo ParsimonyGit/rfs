@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../apps/rfs/rfs/public/js/carrier_rfs_quick_entry.bundle.js"],
+  "sourcesContent": ["frappe.provide('frappe.ui.form');\nfrappe.ui.form.CarrierRFSQuickEntryForm = class CarrierRFSQuickEntryForm extends frappe.ui.form.QuickEntryForm {\n  render_dialog() {\n    super.render_dialog();\n    let dialog = this.dialog;\n    let carrier_account_field = dialog.get_field(\"carrier_account\");\n    carrier_account_field.df.get_query = function (params) {\n      return {\n        filters: {\n          'is_group': 0,\n          'root_type': 'Expense'\n        }\n      }\n    }\n  }\n}"],
+  "mappings": ";;AAAA,SAAO,QAAQ,gBAAgB;AAC/B,SAAO,GAAG,KAAK,2BAA2B,MAAM,iCAAiC,OAAO,GAAG,KAAK,eAAe;AAAA,IAC7G,gBAAgB;AACd,YAAM,cAAc;AACpB,UAAI,SAAS,KAAK;AAClB,UAAI,wBAAwB,OAAO,UAAU,iBAAiB;AAC9D,4BAAsB,GAAG,YAAY,SAAU,QAAQ;AACrD,eAAO;AAAA,UACL,SAAS;AAAA,YACP,YAAY;AAAA,YACZ,aAAa;AAAA,UACf;AAAA,QACF;AAAA,MACF;AAAA,IACF;AAAA,EACF;",
+  "names": []
+}
