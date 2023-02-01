@@ -46,7 +46,7 @@
    "is_query_report": 0,
    "label": "Shipment Sample VIA",
    "link_count": 0,
-   "link_to": "Sample from Vendor Ship VIA RFS",
+   "link_to": "Sample From Vendor Ship VIA RFS",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -120,7 +120,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Sample to Vendor Ship VIA",
+   "label": "Sample To Vendor Ship VIA",
    "link_count": 0,
    "link_to": "Sample To Vendor Ship VIA RFS",
    "link_type": "DocType",
@@ -130,9 +130,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Sample from Vendor Ship VIA",
+   "label": "Sample From Vendor Ship VIA",
    "link_count": 0,
-   "link_to": "Sample from Vendor Ship VIA RFS",
+   "link_to": "Sample From Vendor Ship VIA RFS",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -148,7 +148,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-01-30 01:27:06.234201",
+ "modified": "2023-01-30 20:38:14.906698",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "RFS",

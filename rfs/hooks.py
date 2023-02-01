@@ -12,7 +12,7 @@ app_license = "MIT"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/rfs/css/rfs.css"
-app_include_js = ["carrier_rfs_quick_entry.bundle.js"]
+# app_include_js = ["carrier_rfs_quick_entry.bundle.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/rfs/css/rfs.css"

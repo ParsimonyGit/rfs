@@ -24,14 +24,15 @@
   {
    "allow_in_quick_entry": 1,
    "fieldname": "carrier_account",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Carrier Account",
-   "options": "Account"
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-27 20:16:47.738869",
+ "modified": "2023-01-31 19:47:36.939614",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Carrier RFS",
