@@ -2,6 +2,57 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Request For Sample RFS', {
+	proposed_sample_tracking_no: function (frm) {
+		if (frm.doc.proposed_sample_tracking_no) {
+			let new_status='RFS To Vendor'
+			let new_status_datetime_field='rfs_to_vendor_date'
+			let new_status_color='orange' // no Pink
+			set_status(frm,new_status,new_status_datetime_field,new_status_color)
+		}
+	},
+	shipment_sample_tracking_no_date_time: function (frm) {
+		if (frm.doc.shipment_sample_tracking_no_date_time) {
+			let new_status='RFS From Vendor'
+			let new_status_datetime_field='rfs_from_vendor_date'
+			let new_status_color='orange' // no Purple
+			set_status(frm,new_status,new_status_datetime_field,new_status_color)
+		}
+	},
+	rfs_received: function (frm) {
+		if (frm.doc.rfs_received==1) {
+			let new_status='RFS Received'
+			let new_status_datetime_field='rfs_received_date'
+			let new_status_color='blue'
+			set_status(frm,new_status,new_status_datetime_field,new_status_color)
+		}
+	},
+	rfs_reviewed_by: function (frm) {
+		if (frm.doc.rfs_reviewed_by==1) {
+			let new_status='RFS In Review'
+			let new_status_datetime_field='rfs_in_review_date'
+			let new_status_color='yellow'
+			set_status(frm,new_status,new_status_datetime_field,new_status_color)
+		}
+	},
+	status: function (frm) {
+		let valid_action_status=['RFS Approved','RFS Rejected','RFS Canceled']
+		if (valid_action_status.includes(frm.doc.status)) {
+			let new_status=frm.doc.status
+			let new_status_datetime_field
+			let new_status_color
+			if (new_status=='RFS Approved') {
+				new_status_datetime_field='rfs_approved_date'
+				new_status_color='green'
+			} else if(new_status=='RFS Rejected') {
+				new_status_datetime_field='rfs_rejected_date'
+				new_status_color='red'				
+			} else if(new_status=='RFS Canceled') {
+				new_status_datetime_field='rfs_canceled_date'
+				new_status_color='red'		 // no gray		
+			}
+			set_status(frm,new_status,new_status_datetime_field,new_status_color)
+		}
+	},	
 	onload_post_render: function (frm) {
 		const default_company = frappe.defaults.get_default('company');
 		frm.set_query('company_address', function(doc) {
@@ -76,6 +127,7 @@ frappe.ui.form.on('Request For Sample RFS', {
 			let data=frm.doc.create_label
 			let result= data.replaceAll('\n', '<br/>');
 			console.log('result',result)
+			// result= result+'<br/>'+frm.doc.name
 			$(frm.fields_dict.label_requirements.wrapper).empty().html(
 				`<div class="container">
 				<div class="row">
@@ -85,6 +137,7 @@ frappe.ui.form.on('Request For Sample RFS', {
 							<div class="card-body">
 							  <div class="card-text text-left">${result}</div>
 							</div>
+							<h5 class="card-footer">${frm.doc.name}</h5>
 						</div>
 					</div>
 				</div>
@@ -178,4 +231,14 @@ function address_query(doctype,fieldname) {
 				'link_name': cur_frm.doc.supplier
 			}
 		};
+}
+
+function set_status(frm,new_status,new_status_datetime_field,new_status_color) {
+	frm.set_value(new_status_datetime_field, frappe.datetime.now_datetime())
+	let earlier_status=frm.doc.status
+	frm.set_value('status',new_status )
+	frappe.show_alert({
+		message:__('Status is changed from {0} to <b>{1}</b>',[earlier_status,new_status]),
+		indicator:new_status_color
+	}, 8);	
 }

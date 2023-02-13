@@ -3,7 +3,7 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2022-12-28 00:37:09.401100",
+ "creation": "2023-02-13 02:36:51.107455",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -14,11 +14,23 @@
   "project",
   "project_name_sidemark",
   "status",
+  "rfs_reviewed_by",
   "section_break_5",
   "request_date",
   "required_ship_date",
   "email",
   "add_from_email_groups",
+  "rfs_emailed_date",
+  "rfs_status__history_section",
+  "rfs_status_history",
+  "rfs_action_dates_section",
+  "rfs_in_review_date",
+  "column_break_15",
+  "rfs_approved_date",
+  "column_break_17",
+  "rfs_rejected_date",
+  "column_break_19",
+  "rfs_canceled_date",
   "sample_detail_tab",
   "detailed_sample_description",
   "section_break_11",
@@ -37,16 +49,16 @@
   "column_break_22",
   "create_label",
   "proposed_sample_detail_tab",
-  "we_are_sending_a_sample_to_be_matched",
+  "send_physical_sample",
   "section_break_22",
   "supplier_address",
   "proposed_sample_sent_to",
   "proposed_sample_attention",
   "column_break_18",
-  "proposed_sample_via",
   "proposed_carrier_name",
   "proposed_carrier_account",
   "proposed_sample_tracking_no",
+  "rfs_to_vendor_date",
   "section_break_31",
   "our_sample_pictures",
   "proposed_sample_pictures_display",
@@ -57,10 +69,14 @@
   "proof_shipment_sample_sent_to",
   "shipment_sample_attention",
   "column_break_24",
-  "shipment_sample_via",
   "shipment_sample_carrier_name",
   "shipment_sample_carrier_account",
   "shipment_sample_tracking_no",
+  "rfs_from_vendor_date",
+  "section_break_54",
+  "rfs_received",
+  "column_break_56",
+  "rfs_received_date",
   "section_break_39",
   "factory_sample_pictures",
   "shipment_sample_pictures_display",
@@ -138,7 +154,7 @@
   {
    "fieldname": "proposed_sample_detail_tab",
    "fieldtype": "Tab Break",
-   "label": "Our Sample Detail"
+   "label": "Source Sample Specifications"
   },
   {
    "fieldname": "shipment_sample_detail_tab",
@@ -157,15 +173,9 @@
    "label": "Proposed Sample Attention"
   },
   {
-   "fieldname": "proposed_sample_via",
-   "fieldtype": "Link",
-   "label": "Sample To Vendor Ship VIA",
-   "options": "Sample To Vendor Ship VIA RFS"
-  },
-  {
    "fieldname": "proposed_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Sample To Vendor Tracking No."
+   "label": "Sample Shipment Carrier Tracking Number"
   },
   {
    "fieldname": "proof_shipment_sample_sent_to",
@@ -174,15 +184,9 @@
    "read_only": 1
   },
   {
-   "fieldname": "shipment_sample_via",
-   "fieldtype": "Link",
-   "label": "Sample From Vendor Ship VIA",
-   "options": "Sample From Vendor Ship VIA RFS"
-  },
-  {
    "fieldname": "shipment_sample_tracking_no",
    "fieldtype": "Data",
-   "label": "Sample From Vendor Tracking No."
+   "label": "Sample From Vendor Carrier Tracking Number"
   },
   {
    "description": "Once all the details have been agreed on, the factory should provide (or confirm) quoted price",
@@ -252,11 +256,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "we_are_sending_a_sample_to_be_matched",
-   "fieldtype": "Heading",
-   "label": "We are sending a sample to be matched"
-  },
-  {
+   "depends_on": "eval:doc.send_physical_sample==1",
    "fieldname": "section_break_22",
    "fieldtype": "Section Break"
   },
@@ -359,7 +359,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "RFS Status",
-   "options": "\nOpen\nIn Process\nCompleted\nClosed",
+   "options": "\nOpen\nRFS To Vendor\nRFS Emailed\nRFS From Vendor\nRFS Received\nRFS In Review\nRFS Approved\nRFS Rejected\nRFS Canceled",
    "print_hide": 1
   },
   {
@@ -382,20 +382,20 @@
   {
    "fieldname": "proposed_carrier_name",
    "fieldtype": "Link",
-   "label": "Sample To Vendor Carrier",
+   "label": "Sample Shipment Carrier Name",
    "options": "Carrier RFS"
   },
   {
    "fetch_from": "proposed_carrier_name.carrier_account",
    "fieldname": "proposed_carrier_account",
    "fieldtype": "Data",
-   "label": "Sample To Vendor Carrier Account",
+   "label": "Sample Shipment Carrier Account",
    "read_only": 1
   },
   {
    "fieldname": "shipment_sample_carrier_name",
    "fieldtype": "Link",
-   "label": "Sample From Vendor Carrier",
+   "label": "Sample From Vendor Carrier Name",
    "options": "Carrier RFS"
   },
   {
@@ -404,11 +404,123 @@
    "fieldtype": "Data",
    "label": "Sample From Vendor Carrier Account",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "send_physical_sample",
+   "fieldtype": "Check",
+   "label": "Are we sending a sample to be matched?"
+  },
+  {
+   "fieldname": "rfs_to_vendor_date",
+   "fieldtype": "Datetime",
+   "label": "RFS To Vendor Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rfs_emailed_date",
+   "fieldtype": "Datetime",
+   "label": "RFS Emailed Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rfs_from_vendor_date",
+   "fieldtype": "Datetime",
+   "label": "RFS From Vendor Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_54",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "rfs_received",
+   "fieldtype": "Check",
+   "label": "RFS Received"
+  },
+  {
+   "fieldname": "column_break_56",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rfs_received_date",
+   "fieldtype": "Datetime",
+   "label": "RFS Received Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:(doc.status==\"RFS In Review\" || doc.status==\"RFS Approved\" || doc.status==\"RFS Rejected\" || doc.status==\"RFS Canceled\")",
+   "fieldname": "rfs_reviewed_by",
+   "fieldtype": "Link",
+   "label": "RFS Reviewed By",
+   "mandatory_depends_on": "eval:doc.status=='RFS In Review'",
+   "options": "User"
+  },
+  {
+   "fieldname": "rfs_in_review_date",
+   "fieldtype": "Datetime",
+   "label": "RFS In Review Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rfs_approved_date",
+   "fieldtype": "Datetime",
+   "label": "RFS Approved Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rfs_rejected_date",
+   "fieldtype": "Datetime",
+   "label": "RFS Rejected Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rfs_canceled_date",
+   "fieldtype": "Datetime",
+   "label": "RFS Canceled Date",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rfs_status_history",
+   "fieldtype": "HTML",
+   "label": "RFS Status History"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "rfs_status__history_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "rfs_action_dates_section",
+   "fieldtype": "Section Break",
+   "label": "RFS Action Dates"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-01-30 20:34:37.019206",
+ "modified": "2023-02-13 02:53:14.639037",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
@@ -436,16 +548,37 @@
    "title": "Open"
   },
   {
+   "color": "Cyan",
+   "title": "RFS Emailed"
+  },
+  {
+   "color": "Pink",
+   "title": "RFS To Vendor"
+  },
+  {
+   "color": "Purple",
+   "title": "RFS From Vendor"
+  },
+  {
+   "color": "Blue",
+   "title": "RFS Received"
+  },
+  {
    "color": "Yellow",
-   "title": "In Process"
+   "title": "RFS In Review"
   },
   {
    "color": "Green",
-   "title": "Completed"
+   "title": "RFS Approved"
+  },
+  {
+   "color": "Red",
+   "title": "RFS Rejected"
   },
   {
    "color": "Gray",
-   "title": "Closed"
+   "title": "RFS Canceled"
   }
- ]
+ ],
+ "track_changes": 1
 }

@@ -59,7 +59,11 @@ app_license = "MIT"
 #	"methods": "rfs.utils.jinja_methods",
 #	"filters": "rfs.utils.jinja_filters"
 # }
-
+jinja = {
+    "methods": [
+        "rfs.utils.jinja.get_qr_code"
+    ],
+}
 # Installation
 # ------------
 
@@ -102,13 +106,11 @@ after_migrate = "rfs.migrations.create_connections"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Communication": {
+        "on_update": "rfs.utils.api.after_insert_communication"
+    },
+}
 
 # Scheduled Tasks
 # ---------------

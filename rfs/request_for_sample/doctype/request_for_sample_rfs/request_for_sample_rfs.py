@@ -3,12 +3,27 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import get_datetime
 
 class RequestForSampleRFS(Document):
-	pass
-	# def onload(self):
-	# 	info = self.get_label_requirements()
-	# 	self.set_onload('label_requirements', info)
+	# pass
+	def onload(self):
+		info = self.get_status_dates()
+		for i in info:
+			print('-')
+			print(i)
+			prev=None
+			for k,v in i.items():
+				if v!=None:
+					print(k,v)
+
+					if prev:
+						print(prev,'22')
+						if prev < get_datetime(v):
+							print(prev,get_datetime(v),prev < get_datetime(v) )
+					prev=get_datetime(v)
+					print('ww',prev)
+		# self.set_onload('label_requirements', info)
 
 	# def get_label_requirements(self):
 	# 	# info={}
@@ -18,6 +33,25 @@ class RequestForSampleRFS(Document):
 	# 	# 		info[row.get("parameter")] = row.get("value")
 	# 	# print('info',info)
 	# 	return info
+
+	def get_status_dates(self):
+		return frappe.db.sql(
+		"""SELECT
+	creation as `Open`,
+	rfs_emailed_date as `RFS Emailed`,
+	rfs_to_vendor_date as `RFS To Vendor`,
+	rfs_from_vendor_date as `RFS From Vendor:`,
+	rfs_received_date as `RFS Received`,
+	rfs_in_review_date as `RFS In Review`,
+	rfs_approved_date as `RFS Approved`,
+	rfs_rejected_date as `RFS Rejected`,
+	rfs_canceled_date as `RFS Canceled`
+FROM
+	`tabRequest For Sample RFS`
+where name=%s""",
+		self.name,
+		as_dict=True,
+	)
 
 @frappe.whitelist()
 def get_sample_template_details(sample_template_name):
