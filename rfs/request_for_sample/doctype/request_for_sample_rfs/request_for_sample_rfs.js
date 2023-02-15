@@ -35,8 +35,13 @@ frappe.ui.form.on('Request For Sample RFS', {
 		}
 	},
 	status: function (frm) {
+		
 		let valid_action_status=['RFS Approved','RFS Rejected','RFS Canceled']
 		if (valid_action_status.includes(frm.doc.status)) {
+			if (frm.doc.rfs_in_review_date==undefined || frm.doc.rfs_in_review_date=='') {
+				frappe.throw(__('Status {0} cannot be set. As RFS  has not passed through <b>RFS In Review</b> stage.',[frm.doc.status]))
+				return
+			}			
 			let new_status=frm.doc.status
 			let new_status_datetime_field
 			let new_status_color
@@ -53,6 +58,15 @@ frappe.ui.form.on('Request For Sample RFS', {
 			set_status(frm,new_status,new_status_datetime_field,new_status_color)
 		}
 	},	
+	onload: function(frm) {
+		if(frm.fields_dict['rfs_status_history'] && frm.is_new()==undefined && frm.doc.__onload && "status_history" in frm.doc.__onload) {
+			console.log('frm.doc.__onload',frm.doc.__onload)
+			$(frm.fields_dict['rfs_status_history'].wrapper)
+				.html(frappe.render_template('request_for_sample_status_history',{data: frm.doc.__onload}))
+		}else{
+			$(frm.fields_dict['rfs_status_history'].wrapper).empty().html()
+		}	
+	},	
 	onload_post_render: function (frm) {
 		const default_company = frappe.defaults.get_default('company');
 		frm.set_query('company_address', function(doc) {
@@ -64,20 +78,7 @@ frappe.ui.form.on('Request For Sample RFS', {
 				}
 			};
 		});		
-			//  code : to set default company address
-			// frappe.call({
-			// 	method: "erpnext.setup.doctype.company.company.get_default_company_address",
-			// 	args: {name:frappe.defaults.get_default('company'), existing_address: frm.doc.company_address || ""},
-			// 	debounce: 2000,
-			// 	callback: function(r){
-			// 		if (r.message){
-			// 			frm.set_value("company_address",r.message)
-			// 		}
-			// 		else {
-			// 			frm.set_value("company_address","")
-			// 		}
-			// 	}
-			// })
+		
 	},
 	supplier: function(frm) {
 		frm.set_query('supplier_address', address_query('Supplier',frm.doc.supplier));

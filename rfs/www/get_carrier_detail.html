@@ -1,0 +1,53 @@
+{% extends "templates/web.html" %}
+
+{% set title = heading or "Get Carrier Details" %}
+{% block header %}<h1>{{ heading or "Get Carrier Details" }}</h1>{% endblock %}
+
+{% block page_content %}
+<style>
+	.address {
+		line-height: 1.7em;
+	}
+</style>
+<div class="contact-content">
+	{% if introduction %}
+	<div>
+		{{ introduction or "" }}<br>
+	</div>
+	{% endif %}
+	<div class="row">
+		<div class="col-md-8">
+			<p id="contact-alert" class="alert alert-warning"
+				style="display: none;">&nbsp;</p>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="rfs_name" placeholder="" value="{{rfs_name}}">                
+                </div>                
+			<div class="form-group">
+
+				<select data-fieldname="shipment_sample_carrier_name" class="form-control">
+				{% if query_options -%}
+					{% for option in query_options-%}
+					<option value="{{ option }}">{{ option }}</option>
+					{%- endfor %}
+				{% else %}
+					<option value="Fedx">Fedx</option>
+				{% endif %}
+				</select>
+			</div>
+            <div class="form-group">
+                <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="shipment_sample_tracking_no" placeholder="">                
+            </div>
+
+			<div class="form-group">
+				<textarea rows="10" name="message" class="form-control"></textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-send">{{ _("Send") }}</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- <script>
+</script> -->
+{% endblock %}

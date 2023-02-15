@@ -9,47 +9,25 @@ class RequestForSampleRFS(Document):
 	# pass
 	def onload(self):
 		info = self.get_status_dates()
-		for i in info:
-			print('-')
-			print(i)
-			prev=None
-			for k,v in i.items():
-				if v!=None:
-					print(k,v)
-
-					if prev:
-						print(prev,'22')
-						if prev < get_datetime(v):
-							print(prev,get_datetime(v),prev < get_datetime(v) )
-					prev=get_datetime(v)
-					print('ww',prev)
-		# self.set_onload('label_requirements', info)
-
-	# def get_label_requirements(self):
-	# 	# info={}
-	# 	info={self.create_label}
-	# 	# for row in self.get("sample_details") or []:
-	# 	# 	if row.get("parameter") in ('Construction : Core Material & Structure','Gloss Level','Species','Color','Dimensions US customary units (metric)','Surface Treatment','Finish and Gloss Level'):
-	# 	# 		info[row.get("parameter")] = row.get("value")
-	# 	# print('info',info)
-	# 	return info
+		print(info)
+		self.set_onload('status_history', info)	
 
 	def get_status_dates(self):
 		return frappe.db.sql(
-		"""SELECT
-	creation as `Open`,
-	rfs_emailed_date as `RFS Emailed`,
-	rfs_to_vendor_date as `RFS To Vendor`,
-	rfs_from_vendor_date as `RFS From Vendor:`,
-	rfs_received_date as `RFS Received`,
-	rfs_in_review_date as `RFS In Review`,
-	rfs_approved_date as `RFS Approved`,
-	rfs_rejected_date as `RFS Rejected`,
-	rfs_canceled_date as `RFS Canceled`
-FROM
-	`tabRequest For Sample RFS`
-where name=%s""",
-		self.name,
+		"""select t.status as status,DATE_FORMAT(t.creation_date,'%b %d %Y ,  %k:%i') as creation_date,color from 
+(
+	select creation as creation_date, 'Open' as status, 'light blue' as color  from `tabRequest For Sample RFS` where name='{rfs_name}' union all 
+	select rfs_emailed_date, 'RFS Emailed' as status,'cyan' as color  from `tabRequest For Sample RFS`  where name='{rfs_name}' union all 
+	select rfs_to_vendor_date, 'RFS To Vendor' as status, 'pink' as color from `tabRequest For Sample RFS`   where name='{rfs_name}' union all 
+	select rfs_from_vendor_date, 'RFS From Vendor' as status, 'purple' as color from `tabRequest For Sample RFS`    where name='{rfs_name}' union all 
+	select rfs_received_date, 'RFS Received' as status,  'blue' as color  from `tabRequest For Sample RFS` where name='{rfs_name}' union all 
+	select rfs_in_review_date, 'RFS In Review' as status, 'yellow' as color  from `tabRequest For Sample RFS`  where name='{rfs_name}' union all 
+	select rfs_approved_date, 'RFS Approved' as status,  'green' as color from `tabRequest For Sample RFS`  where name='{rfs_name}' union all 
+	select rfs_rejected_date, 'RFS Rejected' as status, 'red' as color  from `tabRequest For Sample RFS`  where name='{rfs_name}' union all 
+	select rfs_canceled_date, 'RFS Canceled' as status,  'gray' as color from `tabRequest For Sample RFS`   where name='{rfs_name}' 
+) t
+where t.creation_date is not null
+order by t.creation_date ASC """.format(rfs_name=self.name),	
 		as_dict=True,
 	)
 
