@@ -73,6 +73,7 @@
   "shipment_sample_carrier_account",
   "shipment_sample_tracking_no",
   "rfs_from_vendor_date",
+  "sample_from_vendor_remark",
   "section_break_54",
   "rfs_received",
   "column_break_56",
@@ -94,12 +95,12 @@
    "label": "General"
   },
   {
-   "default": "PUR-RFS-.YEAR.-.####",
+   "default": "PUR-RFS-.YYYY.-.####",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series",
-   "options": "PUR-RFS-.YEAR.-.####"
+   "options": "PUR-RFS-.YYYY.-.####"
   },
   {
    "default": "Today",
@@ -354,10 +355,13 @@
    "print_hide": 1
   },
   {
+   "bold": 1,
    "default": "Open",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "RFS Status",
    "options": "\nOpen\nRFS To Vendor\nRFS Emailed\nRFS From Vendor\nRFS Received\nRFS In Review\nRFS Approved\nRFS Rejected\nRFS Canceled",
    "print_hide": 1
@@ -518,11 +522,18 @@
    "fieldname": "rfs_action_dates_section",
    "fieldtype": "Section Break",
    "label": "RFS Action Dates"
+  },
+  {
+   "fieldname": "sample_from_vendor_remark",
+   "fieldtype": "Small Text",
+   "label": "Sample From Vendor Remark",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-02-13 22:46:38.446537",
+ "modified": "2023-02-16 00:18:28.935644",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
@@ -582,5 +593,6 @@
    "title": "RFS Canceled"
   }
  ],
- "track_changes": 1
+ "track_changes": 1,
+ "track_views": 1
 }

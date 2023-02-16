@@ -1,23 +1,23 @@
 
 {% if not jQuery.isEmptyObject(data) %}
 <h5 style="margin-top: 20px;"> {{ __("RFS Status History") }} </h5>
-<table class="table table-bordered small">
+<table class="table table-bordered small" style="width: 100%" >
 	<thead>
 		<tr>
-			<th style="width: 10%">{{ __("#") }}</th>
-			<th style="width: 20%" class="text-right">{{ __("Status") }}</th>
-			<th style="width: 70%" class="text-right">{{ __("Created On") }}</th>
+			<th style="width: 15%" class="text-center">{{ __("#") }}</th>
+			<th style="width: 35%" class="text-left">{{ __("Status") }}</th>
+			<th style="width: 50%" class="text-left">{{ __("Changed On") }}</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for(const [key, value] of Object.entries(data.status_history)) { %}
 			<tr>
-				<td> {%= key %} </td>
-				<td class="text-right">  
+				<td class="text-center"> {%= parseInt(key)+1 %} </td>
+				<td class="text-left">  
 					<span class="indicator-pill whitespace-nowrap {%= value['color'] %}"><span>{%= value["status"] %}</span></span>
 
 				</td>
-				<td class="text-right"> {%= value["creation_date"] %} </td>
+				<td class="text-left"> {%= value["creation_date"] %} </td>
 			</tr>
 		{% } %}
 	</tbody>

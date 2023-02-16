@@ -1,33 +1,40 @@
 {% extends "templates/web.html" %}
 
-{% set title = heading or "Get Carrier Details" %}
-{% block header %}<h1>{{ heading or "Get Carrier Details" }}</h1>{% endblock %}
+{% set title = heading or "Enter your carrier details" %}
+{% block header %}<h3>{{ heading or "Enter your carrier details" }}</h3>{% endblock %}
 
 {% block page_content %}
 <style>
-	.address {
-		line-height: 1.7em;
+	.flabel{
+		color:#4C5A67;
+		font-weight: 400;
+		line-height: 1.2;
+		margin-top: 0;
+		font-size: 15px;
+    	margin-bottom: 4px;
 	}
 </style>
-<div class="contact-content">
-	{% if introduction %}
+<div class="contact-content card">
 	<div>
-		{{ introduction or "" }}<br>
+		<h6>Please fill out the form below when sending samples to us, via carrier/post</h6>
 	</div>
-	{% endif %}
+    <br>
 	<div class="row">
 		<div class="col-md-8">
 			<p id="contact-alert" class="alert alert-warning"
 				style="display: none;">&nbsp;</p>
+    
                 <div class="form-group">
-                    <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="rfs_name" placeholder="" value="{{rfs_name}}">                
-                </div>                
+					<label class="flabel">Request for sample name:</label>
+                    <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="rfs_name" placeholder="" value="{{rfs_name}}" readonly>                
+                </div> 
 			<div class="form-group">
-
-				<select data-fieldname="shipment_sample_carrier_name" class="form-control">
+                <label class="flabel">Choose your carrier/post name:</label>
+				<select data-fieldname="shipment_sample_carrier_name" class="form-control required">
+					<option disabled selected value> --- select a carrier --- </option>
 				{% if query_options -%}
-					{% for option in query_options-%}
-					<option value="{{ option }}">{{ option }}</option>
+             		{% for option in query_options-%}
+					<option value={{ option }}>{{ option }}</option>
 					{%- endfor %}
 				{% else %}
 					<option value="Fedx">Fedx</option>
@@ -35,11 +42,13 @@
 				</select>
 			</div>
             <div class="form-group">
-                <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="shipment_sample_tracking_no" placeholder="">                
+                <label class="flabel">Enter your carrier/post tracking number:</label>
+                <input type="text" autocomplete="off" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Data" data-fieldname="shipment_sample_tracking_no" placeholder="Enter tracking number" required>                
             </div>
 
 			<div class="form-group">
-				<textarea rows="10" name="message" class="form-control"></textarea>
+                <label class="flabel">Remark (if any):</label>
+				<textarea rows="2" data-fieldname="sample_from_vendor_remark" class="form-control"></textarea>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary btn-send">{{ _("Send") }}</button>

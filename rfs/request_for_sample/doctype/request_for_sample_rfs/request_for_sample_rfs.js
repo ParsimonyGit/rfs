@@ -27,7 +27,7 @@ frappe.ui.form.on('Request For Sample RFS', {
 		}
 	},
 	rfs_reviewed_by: function (frm) {
-		if (frm.doc.rfs_reviewed_by==1) {
+		if (frm.doc.rfs_reviewed_by!=undefined || frm.doc.rfs_reviewed_by!='') {
 			let new_status='RFS In Review'
 			let new_status_datetime_field='rfs_in_review_date'
 			let new_status_color='yellow'
@@ -60,7 +60,6 @@ frappe.ui.form.on('Request For Sample RFS', {
 	},	
 	onload: function(frm) {
 		if(frm.fields_dict['rfs_status_history'] && frm.is_new()==undefined && frm.doc.__onload && "status_history" in frm.doc.__onload) {
-			console.log('frm.doc.__onload',frm.doc.__onload)
 			$(frm.fields_dict['rfs_status_history'].wrapper)
 				.html(frappe.render_template('request_for_sample_status_history',{data: frm.doc.__onload}))
 		}else{
@@ -127,7 +126,6 @@ frappe.ui.form.on('Request For Sample RFS', {
 		if(!frm.doc.__islocal && frm.doc.create_label &&  frm.doc.create_label.length>0 ) {
 			let data=frm.doc.create_label
 			let result= data.replaceAll('\n', '<br/>');
-			console.log('result',result)
 			// result= result+'<br/>'+frm.doc.name
 			$(frm.fields_dict.label_requirements.wrapper).empty().html(
 				`<div class="container">
@@ -155,7 +153,6 @@ frappe.ui.form.on('Request For Sample RFS', {
 			fieldtype: 'Link',
 			options: 'Email Group'
 		}, (values) => {
-			console.log(values.email_group);
 			frappe.db.get_list('Email Group Member', {
 				fields: ['email'],
 				filters: {
@@ -163,10 +160,8 @@ frappe.ui.form.on('Request For Sample RFS', {
 					'email_group':values.email_group
 				}
 			}).then(records => {
-				console.log(records);
 				let email_list = $.map(records, (row, idx)=>{ return row.email}).toString()	
 				email_list= email_list.replaceAll(',', ',\n');
-				console.log('email_list',email_list);
 				if (frm.doc.email && frm.doc.email.length>0){
 					email_list=','+email_list
 					frm.set_value('email', frm.doc.email+email_list)
@@ -214,7 +209,6 @@ frappe.ui.form.on('Samples RFS', {
 			let filename_start_index=attached_filname.lastIndexOf('/')
 			let filename_end_index=attached_filname.lastIndexOf('.')
 			let filename=attached_filname.slice(filename_start_index+1,filename_end_index)
-			console.log(filename)		
 			frappe.model.set_value(cdt, cdn, 'photo_id', filename);	
 		}
 	},
