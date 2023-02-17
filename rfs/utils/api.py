@@ -6,6 +6,7 @@ def after_insert_communication(doc, method=None):
     try:
         reference_doctype = doc.get("reference_doctype")
         reference_name = doc.get("reference_name")
+        creation=doc.get("creation")
         if (
             doc.communication_type == "Communication"
             and doc.sent_or_received == "Sent"
@@ -20,7 +21,7 @@ def after_insert_communication(doc, method=None):
                     reference_doctype,
                     reference_name,
                     "rfs_emailed_date",
-                    frappe.utils.today(),
+                    creation
                 )
                 frappe.reload_doc("request_for_sample", "doctype", "request_for_sample_rfs")
     except Exception:
