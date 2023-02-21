@@ -3,7 +3,7 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2023-02-13 02:36:51.107455",
+ "creation": "2023-02-16 09:09:40.872486",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -13,6 +13,7 @@
   "naming_series",
   "project",
   "project_name_sidemark",
+  "project_type",
   "status",
   "rfs_reviewed_by",
   "section_break_5",
@@ -528,12 +529,18 @@
    "fieldtype": "Small Text",
    "label": "Sample From Vendor Remark",
    "read_only": 1
+  },
+  {
+   "fetch_from": "project.project_type",
+   "fieldname": "project_type",
+   "fieldtype": "Data",
+   "label": "Project Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2023-02-16 00:18:28.935644",
+ "modified": "2023-02-20 21:26:24.933117",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",

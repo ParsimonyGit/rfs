@@ -10,8 +10,8 @@ frappe.ui.form.on('Request For Sample RFS', {
 			set_status(frm,new_status,new_status_datetime_field,new_status_color)
 		}
 	},
-	shipment_sample_tracking_no_date_time: function (frm) {
-		if (frm.doc.shipment_sample_tracking_no_date_time) {
+	shipment_sample_tracking_no: function (frm) {
+		if (frm.doc.shipment_sample_tracking_no) {
 			let new_status='RFS From Vendor'
 			let new_status_datetime_field='rfs_from_vendor_date'
 			let new_status_color='orange' // no Purple
