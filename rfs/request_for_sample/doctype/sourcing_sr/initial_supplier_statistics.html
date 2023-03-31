@@ -1,0 +1,25 @@
+
+{% if not jQuery.isEmptyObject(data) %}
+<h5 style="margin-top: 20px;"> {{ __("Initial Supplier Request Statistics") }} </h5>
+<table class="table table-bordered small" style="width: 100%" >
+	<thead>
+		<tr>
+			<th style="width: 15%" class="text-center">{{ __("#") }}</th>
+			<th style="width: 25%" class="text-left">{{ __("Response Received %") }}</th>
+			<th style="width: 30%" class="text-left">{{ __("Avg Response Time(Days)") }}</th>
+            <th style="width: 30%" class="text-left">{{ __("Avg Star Rating") }}</th>
+		</tr>
+	</thead>
+	<tbody>
+       			<tr>
+				<td class="text-center"> {%= parseInt(0)+1 %} </td>
+				<td class="text-left"> {%= data.initial_supplier_statistics["response_received_per"] %}</td>
+				<td class="text-left"> {%= data.initial_supplier_statistics["avg_response_time"] %} </td>
+                <td class="text-left"><div class="rating">{%= data.initial_supplier_statistics["avg_star_rating"] %} </div> </td>
+			</tr>
+	
+	</tbody>
+</table>
+{% else %}
+<p style="margin-top: 30px;"> initial supplier request statistics is not available. </p>
+{% endif %}

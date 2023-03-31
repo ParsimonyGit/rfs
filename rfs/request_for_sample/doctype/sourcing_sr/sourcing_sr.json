@@ -1,0 +1,328 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-03-31 05:19:20.549524",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_tab",
+  "naming_series",
+  "project",
+  "sourcing_start_date",
+  "status",
+  "column_break_mn8tx",
+  "project_name_sidemark",
+  "project_type",
+  "product_ideation_section",
+  "product_name",
+  "target_fob_cost",
+  "estimated_initial_order_in_units",
+  "enhancement_ideas",
+  "other_initial_data",
+  "column_break_o28be",
+  "recommended_amazon_category",
+  "target_sku1",
+  "target_sku2",
+  "target_sku3",
+  "screenshot_of_main_target_asin",
+  "helium10_initial_data",
+  "data_dive_initial_data",
+  "data_dive_opportunity_flags",
+  "data_dive_brand_analytics_kw_cloud",
+  "product_specification_section",
+  "specification_template",
+  "specification_details",
+  "initial_supplier_tab",
+  "initial_supplier_details",
+  "email_section",
+  "initial_email_template",
+  "initial_email_subject",
+  "column_break_oze24",
+  "preview_email_to_initial_suppliers",
+  "send_email_to_initial_suppliers",
+  "section_break_email_body_cf",
+  "initial_email_body",
+  "section_break_tbbre",
+  "initial_supplier_statistics",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_tab",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "default": "SR-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "naming_series",
+   "options": "SR-.YYYY.-.####"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name_sidemark",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project Name (sidemark)",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "sourcing_start_date",
+   "fieldtype": "Date",
+   "label": "Sourcing Start Date"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "product_ideation_section",
+   "fieldtype": "Section Break",
+   "label": "Product Ideation"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name"
+  },
+  {
+   "fieldname": "target_fob_cost",
+   "fieldtype": "Float",
+   "label": "Target FOB Cost",
+   "precision": "2"
+  },
+  {
+   "fieldname": "target_sku1",
+   "fieldtype": "Data",
+   "label": "Target SKU1"
+  },
+  {
+   "fieldname": "target_sku2",
+   "fieldtype": "Data",
+   "label": "Target SKU2"
+  },
+  {
+   "fieldname": "target_sku3",
+   "fieldtype": "Data",
+   "label": "Target SKU3"
+  },
+  {
+   "fieldname": "estimated_initial_order_in_units",
+   "fieldtype": "Data",
+   "label": "Estimated Initial Order in Units"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sourcing SR",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "screenshot_of_main_target_asin",
+   "fieldtype": "Attach Image",
+   "label": "Screenshot of Main Target ASIN"
+  },
+  {
+   "fieldname": "recommended_amazon_category",
+   "fieldtype": "Link",
+   "label": "Recommended Amazon Category",
+   "options": "Amazon Category SR"
+  },
+  {
+   "fieldname": "enhancement_ideas",
+   "fieldtype": "Small Text",
+   "label": "Enhancement Ideas"
+  },
+  {
+   "fieldname": "helium10_initial_data",
+   "fieldtype": "Attach Image",
+   "label": "Helium10 Initial Data"
+  },
+  {
+   "fieldname": "data_dive_initial_data",
+   "fieldtype": "Attach Image",
+   "label": "Data Dive Initial Data"
+  },
+  {
+   "fieldname": "data_dive_opportunity_flags",
+   "fieldtype": "Attach Image",
+   "label": "Data Dive Opportunity Flags"
+  },
+  {
+   "fieldname": "data_dive_brand_analytics_kw_cloud",
+   "fieldtype": "Attach Image",
+   "label": "Data Dive Brand Analytics KW Cloud"
+  },
+  {
+   "fieldname": "other_initial_data",
+   "fieldtype": "Small Text",
+   "label": "Other Initial Data"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "product_specification_section",
+   "fieldtype": "Section Break",
+   "label": "Product Specifications"
+  },
+  {
+   "fieldname": "column_break_mn8tx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project.project_type",
+   "fieldname": "project_type",
+   "fieldtype": "Data",
+   "label": "Project Type"
+  },
+  {
+   "fieldname": "column_break_o28be",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "initial_supplier_tab",
+   "fieldtype": "Tab Break",
+   "label": "Initial Supplier"
+  },
+  {
+   "fieldname": "initial_supplier_details",
+   "fieldtype": "Table",
+   "options": "Initial Supplier Detail"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.initial_email_body",
+   "fieldname": "email_section",
+   "fieldtype": "Section Break",
+   "label": "Email"
+  },
+  {
+   "fieldname": "initial_email_template",
+   "fieldtype": "Link",
+   "label": "Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fetch_from": "initial_email_template.subject",
+   "fetch_if_empty": 1,
+   "fieldname": "initial_email_subject",
+   "fieldtype": "Data",
+   "label": "Subject"
+  },
+  {
+   "fieldname": "column_break_oze24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "<b>&nbsp; Use {{initial_supplier}} to substitute supplier name </b><br>\n<b>&nbsp;  Use {{user_fullname}} to substitute logged in sender name </b>\n<hr>\n<pre>Details\n- Project: {{ project_name_sidemark }}\n- Product: {{ product_name }}\n</pre>\n<h6>How to get fieldnames</h6>\n<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. <br>You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sourcing SR)</p>",
+   "fetch_from": "initial_email_template.response",
+   "fetch_if_empty": 1,
+   "fieldname": "initial_email_body",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "specification_template",
+   "fieldtype": "Link",
+   "label": "Specification Template",
+   "options": "Sample Template RFS"
+  },
+  {
+   "fieldname": "specification_details",
+   "fieldtype": "Table",
+   "label": "Specification Details",
+   "options": "Parameter For Sample Detail RFS"
+  },
+  {
+   "depends_on": "eval:doc.initial_email_body",
+   "fieldname": "send_email_to_initial_suppliers",
+   "fieldtype": "Button",
+   "label": "Send Email To Initial Suppliers"
+  },
+  {
+   "depends_on": "eval:doc.initial_email_body",
+   "fieldname": "preview_email_to_initial_suppliers",
+   "fieldtype": "Button",
+   "label": "Preview Email"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.initial_email_template",
+   "depends_on": "eval:doc.initial_email_template",
+   "fieldname": "section_break_email_body_cf",
+   "fieldtype": "Section Break",
+   "label": "Body"
+  },
+  {
+   "bold": 1,
+   "default": "Initial Supplier Request",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Sourcing Stage",
+   "options": "\nInitial Supplier Request\nQuotation Eligible Supplier Request\nQualified Supplier Request"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_tbbre",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "initial_supplier_statistics",
+   "fieldtype": "HTML",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-03-31 05:37:15.398050",
+ "modified_by": "Administrator",
+ "module": "Request For Sample",
+ "name": "Sourcing SR",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Initial Supplier Request"
+  },
+  {
+   "color": "Yellow",
+   "title": "Quotation Eligible Supplier Request"
+  },
+  {
+   "color": "Blue",
+   "title": "Qualified Supplier Request"
+  }
+ ],
+ "track_changes": 1
+}
