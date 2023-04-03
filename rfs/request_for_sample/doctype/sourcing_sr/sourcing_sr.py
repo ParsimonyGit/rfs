@@ -17,7 +17,7 @@ class SourcingSR(Document):
 
 	def get_initial_supplier_statistics(self):
 		data={}
-		avg_star_rating=frappe.db.sql("""SELECT (sum(initial_supplier_rating/2)/count(name))*10 as avg_star_rating 
+		avg_star_rating=frappe.db.sql("""SELECT SUM(initial_supplier_rating)/COUNT(name)  as avg_star_rating 
 		FROM `tabInitial Supplier Detail` where initial_sent=1 and parent='{sourcing_name}'"""
 		.format(sourcing_name=self.name),as_dict=True,debug=1)[0]
 
