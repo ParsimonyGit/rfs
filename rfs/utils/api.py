@@ -32,7 +32,7 @@ def after_insert_communication(doc, method=None):
             if reference_doctype == "Sourcing SR":
                 sourcing_initial_email_subject= frappe.db.get_value('Sourcing SR', reference_name, 'initial_email_subject')
                 if sourcing_initial_email_subject and doc.subject==sourcing_initial_email_subject:
-                    initial_supplier_detail_name=frappe.db.get_list('Initial Supplier Detail', 
+                    initial_supplier_detail_name=frappe.db.get_all('Initial Supplier Detail', 
                                                                     fields=['name'],
                                                                     filters={'parent': ['=', reference_name],'initial_supplier_email': ['=', doc.recipients] })                    
                     if len(initial_supplier_detail_name)>0:
@@ -66,7 +66,7 @@ def after_insert_communication(doc, method=None):
         ):        
             if reference_doctype == "Sourcing SR":
                 if doc.in_reply_to:
-                    initial_supplier_detail_name=frappe.db.get_list('Initial Supplier Detail', 
+                    initial_supplier_detail_name=frappe.db.get_all('Initial Supplier Detail', 
                                                                     fields=['name'],
                                                                     filters={'parent': ['=', reference_name],'initial_sent_communication_name': ['=', doc.in_reply_to] })                    
                     if len(initial_supplier_detail_name)>0:

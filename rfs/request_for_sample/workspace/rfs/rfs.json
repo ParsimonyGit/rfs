@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Request For Sample</span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"RFS Form\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"RFS Data\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Sourcing</b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Sourcing Form\",\"col\":4}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Request For Sample</span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"RFS Form\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"RFS Data\",\"col\":4}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Sourcing</b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Sourcing Form\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Sourcing Settings\",\"col\":4}}]",
  "creation": "2022-12-27 22:28:15.037135",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -104,9 +104,27 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sourcing Settings",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sourcing Settings",
+   "link_count": 0,
+   "link_to": "Sourcing Settings SR",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-03-29 02:56:16.012123",
+ "modified": "2023-04-05 00:18:17.832794",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "RFS",
