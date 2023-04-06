@@ -47,9 +47,16 @@
             </div>
 
 			<div class="form-group">
-                <label class="flabel">Remark (if any):</label>
+                <label class="flabel">Remarks (if any):</label>
 				<textarea rows="2" data-fieldname="sample_from_vendor_remark" class="form-control"></textarea>
 			</div>
+			<div class="form-group">
+				<label class="flabel" for="factory_sample_picture">Attach Image 1:</label>
+				<input id="factory_sample_picture"
+					   accept="image/*"
+					   type="file"
+					   name="factory_sample_picture" multiple/>
+		  </div>
 			<div class="form-group">
 				<button class="btn btn-primary btn-send">{{ _("Send") }}</button>
 			</div>
