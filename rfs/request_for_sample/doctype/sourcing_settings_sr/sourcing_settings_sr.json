@@ -26,8 +26,7 @@
    "fieldname": "default_sourcing_pdf_to_attach",
    "fieldtype": "Link",
    "label": "Default Sourcing PDF to Attach",
-   "options": "Print Format",
-   "reqd": 1
+   "options": "Print Format"
   },
   {
    "fieldname": "default_sourcing_email_template",
@@ -49,7 +48,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-07 03:35:38.687233",
+ "modified": "2023-04-07 05:05:35.647208",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Sourcing Settings SR",
