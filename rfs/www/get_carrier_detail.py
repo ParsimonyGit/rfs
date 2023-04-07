@@ -24,13 +24,7 @@ def send_carrier_details(**args):
             "message"
         ] = "Sorry: RFS doesn't exist in our system. Please take a screenshot and email us."
         return
-    # frappe.db.set_value('Request For Sample RFS', rfs_name, {
-    #     'shipment_sample_carrier_name': shipment_sample_carrier_name,
-    #     'shipment_sample_tracking_no': shipment_sample_tracking_no,
-    #     'sample_from_vendor_remark':sample_from_vendor_remark,
-    #     'rfs_from_vendor_date':frappe.utils.now_datetime(),
-    #     'status':'RFS From Vendor'
-    # })
+
     rfs = frappe.get_doc("Request For Sample RFS", rfs_name)
     rfs.shipment_sample_carrier_name = shipment_sample_carrier_name
     rfs.shipment_sample_tracking_no = shipment_sample_tracking_no
@@ -43,21 +37,22 @@ def send_carrier_details(**args):
     for d in files:
         try:
             file = files[d]
+            file_name=file.filename.rsplit('.', maxsplit=1)[0]            
             ret = frappe.get_doc(
                 {
                     "doctype": "File",
                     "attached_to_doctype": rfs.doctype,
                     "attached_to_name": rfs.name,
                     "folder": "Home",
-                    "file_name": file.filename,
-                    "is_private": 1,
+                    "file_name": file_name,
+                    "is_private": 0,
                     "content": file.stream.read(),
                 }
             )
             ret.save(ignore_permissions=True)
             rfs.append(
                 "factory_sample_pictures",
-                {"photo_id": file.filename, "attach_sample_image": ret.file_url},
+                {"photo_id": file_name, "attach_sample_image": ret.file_url},
             )
         except frappe.DuplicateEntryError:
             pass

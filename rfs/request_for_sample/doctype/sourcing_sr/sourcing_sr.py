@@ -80,14 +80,36 @@ class SourcingSR(Document):
 
 		self.send_email(data, sender, subject, message, attachments)
 
+	def get_attachments(self):
+		attach_product_pdf_in_sourcing_email = frappe.db.get_single_value("Sourcing Settings SR", "attach_product_pdf_in_sourcing_email")
+		default_sourcing_pdf_to_attach=frappe.db.get_single_value("Sourcing Settings SR", "default_sourcing_pdf_to_attach")
+		print('-'*10)
+		print(attach_product_pdf_in_sourcing_email,default_sourcing_pdf_to_attach)
+		if attach_product_pdf_in_sourcing_email==0:
+			return []
+		attachments = frappe.attach_print(
+			"Sourcing Settings SR",
+			self.name,
+			file_name="Product Details",
+			print_format=default_sourcing_pdf_to_attach,
+		)
+
+		return [attachments]
+
 	def send_email(self, data, sender, subject, message, attachments):
+		attach_product_pdf_in_sourcing_email = frappe.db.get_single_value("Sourcing Settings SR", "attach_product_pdf_in_sourcing_email")
+		if attach_product_pdf_in_sourcing_email==0:
+			print_format_attachment=None
+		else:
+			print_format_attachment=frappe.db.get_single_value("Sourcing Settings SR", "default_sourcing_pdf_to_attach") or None
+
 		make(
 			subject=subject,
 			content=message,
 			recipients=data.initial_supplier_email,
 			sender=sender,
 			attachments=attachments,
-			print_format=None or self.meta.default_print_format or "Standard",
+			print_format=print_format_attachment,
 			send_email=True,
 			doctype=self.doctype,
 			name=self.name,

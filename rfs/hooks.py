@@ -187,3 +187,13 @@ doc_events = {
 # auth_hooks = [
 #	"rfs.auth.validate"
 # ]
+fixtures = [
+    {
+        "doctype": "Email Template",
+        "filters": {"name": "Sourcing"}
+    },
+    {
+        "doctype": "Print Format",
+        "filters": {"name": "Sourcing Email PDF"}
+    }
+    ]

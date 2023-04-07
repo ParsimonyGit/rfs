@@ -1,0 +1,33 @@
+[
+ {
+  "absolute_value": 0,
+  "align_labels_right": 0,
+  "css": "div.print-heading{\n    display:none;\n}\ndiv.row.section-break{\n    margin-top:0px;\n}\n.img-responsive{max-height: 160px;width: 120px;margin-left: 100px;}",
+  "custom_format": 0,
+  "default_print_language": "en",
+  "disabled": 0,
+  "doc_type": "Sourcing SR",
+  "docstatus": 0,
+  "doctype": "Print Format",
+  "font": null,
+  "font_size": 14,
+  "format_data": "[{\"fieldname\": \"print_heading_template\", \"fieldtype\": \"Custom HTML\", \"options\": \"<div class=\\\"print-heading\\\">\\t\\t\\t\\t<h2><div>Sourcing SR</div><br><small class=\\\"sub-heading\\\">{{ doc.name }}</small>\\t\\t\\t\\t</h2></div>\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"project\", \"print_hide\": 0, \"label\": \"Project\"}, {\"fieldname\": \"sourcing_start_date\", \"print_hide\": 0, \"label\": \"Sourcing Start Date\"}, {\"fieldname\": \"project_type\", \"print_hide\": 0, \"label\": \"Project Type\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"project_name_sidemark\", \"print_hide\": 0, \"label\": \"Project Name (sidemark)\"}, {\"fieldtype\": \"Section Break\", \"label\": \"Product Ideation\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"product_name\", \"print_hide\": 0, \"label\": \"Product Name\"}, {\"fieldname\": \"target_fob_cost\", \"print_hide\": 0, \"align\": \"left\", \"label\": \"Target FOB Cost\"}, {\"fieldname\": \"estimated_initial_order_in_units\", \"print_hide\": 0, \"label\": \"Estimated Initial Order in Units\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"screenshot_of_main_target_asin\", \"print_hide\": 0, \"label\": \"Screenshot of Main Target ASIN\"}, {\"fieldtype\": \"Section Break\", \"label\": \"Product Specifications\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"specification_template\", \"print_hide\": 0, \"label\": \"Specification Template\"}, {\"fieldname\": \"_custom_html\", \"print_hide\": 0, \"label\": \"Custom HTML\", \"fieldtype\": \"HTML\", \"options\": \"{% if doc.specification_details %}\\n<table class=\\\"table table-bordered\\\" style=\\\"width:100%;font-size: inherit;\\\">\\n    <thead>\\n        <tr style=\\\"background-color:#EEEEEE;width:100%;\\\">\\n            <td style=\\\"width:50%;font-size:12px Inter,'Helvetica Neue';color:#36414C;line-height: 1.42857143;\\\"><b>Parameter</b></td>\\n            <td style=\\\"width:50%;font-size:12px Inter,'Helvetica Neue';color:#36414C;line-height: 1.42857143;\\\"><b>Value</b></td>\\n        </tr>\\n    </thead>\\n    \\n    <tbody>\\n        {% for row in doc.specification_details %}\\n            {% if row.value %}\\n                <tr>\\n                    <td style=\\\"font-size:12px Inter,'Helvetica Neue';color:#36414C;line-height: 1.42857143;\\\">{{row.parameter}}</td>\\n                    <td style=\\\"font-size:12px Inter,'Helvetica Neue';color:#36414C;line-height: 1.42857143;\\\">{{row.value}}</td>\\n                </tr>\\n            {% endif %}\\n        {% endfor %}\\n    </tbody>\\n</table>\\n{% endif %}\"}]",
+  "html": null,
+  "line_breaks": 1,
+  "margin_bottom": 10.0,
+  "margin_left": 15.0,
+  "margin_right": 15.0,
+  "margin_top": 10.0,
+  "modified": "2023-04-05 05:07:22.945053",
+  "module": "Request For Sample",
+  "name": "Sourcing Email PDF",
+  "page_number": "Hide",
+  "print_format_builder": 0,
+  "print_format_builder_beta": 0,
+  "print_format_type": "Jinja",
+  "raw_commands": null,
+  "raw_printing": 0,
+  "show_section_headings": 1,
+  "standard": "Yes"
+ }
+]

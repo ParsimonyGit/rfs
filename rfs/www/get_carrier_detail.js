@@ -1,3 +1,6 @@
+// upload multiple files from web
+// https://www.raymondcamden.com/2016/05/05/uploading-multiple-files-at-once-with-ajax-and-xhr2
+//  
 frappe.ready(function () {
   $(".btn-send")
     .off("click")
@@ -57,7 +60,7 @@ frappe.ready(function () {
             console.log(result, result.message, result.message == "okay");
             if (result.message == "okay") {
               frappe.msgprint(
-                "Thank you, we have received your carrier/post details."
+                "Thank you, we have received your carrier/post details and images."
               );
             } else {
               frappe.msgprint(result.message);

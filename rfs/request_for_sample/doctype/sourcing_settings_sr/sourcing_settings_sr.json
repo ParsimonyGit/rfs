@@ -7,7 +7,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "default_sourcing_email_account"
+  "default_sourcing_email_account",
+  "default_sourcing_email_template",
+  "column_break_zr8ps",
+  "attach_product_pdf_in_sourcing_email",
+  "default_sourcing_pdf_to_attach"
  ],
  "fields": [
   {
@@ -17,12 +21,35 @@
    "label": "Default Sourcing Email Account",
    "options": "Email Account",
    "reqd": 1
+  },
+  {
+   "fieldname": "default_sourcing_pdf_to_attach",
+   "fieldtype": "Link",
+   "label": "Default Sourcing PDF to Attach",
+   "options": "Print Format",
+   "reqd": 1
+  },
+  {
+   "fieldname": "default_sourcing_email_template",
+   "fieldtype": "Link",
+   "label": "Default Sourcing Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "column_break_zr8ps",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "attach_product_pdf_in_sourcing_email",
+   "fieldtype": "Check",
+   "label": "Attach Product PDF in Sourcing Email?"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-04-05 00:17:28.475818",
+ "modified": "2023-04-07 03:35:38.687233",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Sourcing Settings SR",

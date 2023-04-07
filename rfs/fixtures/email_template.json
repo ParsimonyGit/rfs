@@ -1,0 +1,12 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Email Template",
+  "modified": "2023-04-07 03:30:06.998005",
+  "name": "Sourcing",
+  "response": "<div class=\"ql-editor read-mode\"><p>Dear {{initial_supplier}},</p><p><br></p><p>We are a US company based in Seattle. Our company name is symoglobal. We are looking for <strong>{{ product_name }}</strong> for our customer. </p><p>It shall have UL certification for US market. Are you UL certified? </p><p>Can you send me your catalogue with {{ product_name }} only and also the price list with different quantity. </p><p><br></p><p><strong>PS: </strong>Attached is detailed product requirement.</p><p><br></p><p>Thanks,</p><p>{{user_fullname}}</p></div>",
+  "response_html": null,
+  "subject": "sourcing template",
+  "use_html": 0
+ }
+]
