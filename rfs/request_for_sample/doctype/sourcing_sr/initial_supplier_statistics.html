@@ -1,9 +1,14 @@
 <script type="text/javascript">
 	{% if not jQuery.isEmptyObject(data) %}
-	let supplier_avg_star_rating=star_rating({%= data.initial_supplier_statistics["avg_star_rating"] %});
+
+	{% if (typeof supplier_avg_star_rating=="undefined") %}
+	let supplier_avg_star_rating;
+	{% endif %}
+
+	supplier_avg_star_rating=star_rating({%= data.initial_supplier_statistics["avg_star_rating"] %});
 	$(".initial_supplier_avg_star_rating").html(supplier_avg_star_rating);
 	{% endif %}
-	
+
 	function star_rating(value) {
 	let rating_html = "";
 	let number_of_stars = 5;

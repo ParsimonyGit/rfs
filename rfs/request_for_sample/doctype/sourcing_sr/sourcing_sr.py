@@ -19,15 +19,15 @@ class SourcingSR(Document):
 		data={}
 		avg_star_rating=frappe.db.sql("""SELECT SUM(initial_supplier_rating)/COUNT(name)  as avg_star_rating 
 		FROM `tabInitial Supplier Detail` where initial_sent=1 and parent='{sourcing_name}'"""
-		.format(sourcing_name=self.name),as_dict=True,debug=1)[0]
+		.format(sourcing_name=self.name),as_dict=True,debug=0)[0]
 
 		response_received_per=frappe.db.sql("""SELECT SUM(initial_received)/SUM(initial_sent) as response_received_per
 		FROM `tabInitial Supplier Detail` where initial_sent=1 and parent='{sourcing_name}'"""
-		.format(sourcing_name=self.name),as_dict=True,debug=1)[0]
+		.format(sourcing_name=self.name),as_dict=True,debug=0)[0]
 
 		avg_response_time=frappe.db.sql("""SELECT IFNULL(((TIMESTAMPDIFF(DAY,initial_supplier_email_sent_date,initial_supplier_email_received_date))/COUNT(name)),0) as avg_response_time
 		FROM `tabInitial Supplier Detail` where initial_supplier_email_received_date is not null and initial_supplier_email_sent_date is not null and parent='{sourcing_name}'"""
-		.format(sourcing_name=self.name),as_dict=True,debug=1)[0]
+		.format(sourcing_name=self.name),as_dict=True,debug=0)[0]
 
 		data.update(avg_star_rating)
 		data.update(response_received_per)
