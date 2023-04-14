@@ -38,7 +38,7 @@
    "fieldname": "initial_supplier_email",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Supplier Email",
+   "label": "Email",
    "options": "Email"
   },
   {
@@ -103,7 +103,7 @@
    "fieldname": "initial_supplier_rate",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Supplier Rate"
+   "label": "Quoted Cost"
   },
   {
    "columns": 1,
@@ -116,7 +116,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-04-05 00:23:05.694783",
+ "modified": "2023-04-14 04:36:02.447797",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Initial Supplier Detail",
