@@ -190,7 +190,7 @@ doc_events = {
 fixtures = [
     {
         "doctype": "Email Template",
-        "filters": {"name": "Sourcing"}
+        "filters": {"name": "Supplier Initial Sourcing Request"}
     },
     {
         "doctype": "Print Format",
