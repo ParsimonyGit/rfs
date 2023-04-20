@@ -5,8 +5,9 @@
 import frappe
 from frappe.model.document import Document
 from frappe.core.doctype.communication.email import make
-from frappe.utils.user import get_user_fullname,parse_addr
+from frappe.utils.user import get_user_fullname
 from frappe import _
+from frappe.utils import cint, comma_or, cstr, parse_addr
 
 STANDARD_USERS = ("Guest", "Administrator")
 
