@@ -11,3 +11,5 @@ def execute():
 		"""
 		) 		
 		frappe.db.sql("""Delete from `tabEmail Template` where name='Sourcing'""")
+
+		

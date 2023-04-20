@@ -5,7 +5,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.core.doctype.communication.email import make
-from frappe.utils.user import get_user_fullname
+from frappe.utils.user import get_user_fullname,parse_addr
 from frappe import _
 
 STANDARD_USERS = ("Guest", "Administrator")
@@ -77,8 +77,30 @@ class SourcingSR(Document):
 
 		attachments=None
 		# attachments = self.get_attachments()
+		# sender_full_name=self.get_sender_full_name(sender)
+		default_sourcing_email_account = frappe.db.get_single_value("Sourcing Settings SR", "default_sourcing_email_account")
+		if not default_sourcing_email_account:
+			frappe.throw(
+				_("Please set Default Sourcing Email Account in Sourcing Settings")
+			)
+		email_id = frappe.db.get_value('Email Account', default_sourcing_email_account, 'email_id')	
+		self.send_email(data=data, sender=email_id,sender_full_name=full_name, subject=subject, message=message, attachments=attachments)
 
-		self.send_email(data, sender, subject, message, attachments)
+	def get_sender_full_name(self,sender):
+		sender_name, sender_email = parse_addr(sender)
+		sender_full_name=None
+		if sender_full_name:
+			self.sender_full_name = frappe.db.get_value("User", sender, "full_name")
+
+		if self.sender_full_name:
+			first_name, last_name = frappe.db.get_value(
+				"Contact", filters={"email_id": sender_email}, fieldname=["first_name", "last_name"]
+			) or [None, None]
+			sender_full_name = (first_name or "") + (last_name or "")
+
+		if self.sender_full_name:
+			self.sender_full_name = sender_email
+		return sender_full_name
 
 	def get_attachments(self):
 		attach_product_pdf_in_sourcing_email = frappe.db.get_single_value("Sourcing Settings SR", "attach_product_pdf_in_sourcing_email")
@@ -96,7 +118,7 @@ class SourcingSR(Document):
 
 		return [attachments]
 
-	def send_email(self, data, sender, subject, message, attachments):
+	def send_email(self, data, sender, sender_full_name, subject, message, attachments):
 		attach_product_pdf_in_sourcing_email = frappe.db.get_single_value("Sourcing Settings SR", "attach_product_pdf_in_sourcing_email")
 		if attach_product_pdf_in_sourcing_email==0:
 			print_format_attachment=None
@@ -108,6 +130,7 @@ class SourcingSR(Document):
 			content=message,
 			recipients=data.initial_supplier_email,
 			sender=sender,
+			sender_full_name=sender_full_name,
 			attachments=attachments,
 			print_format=print_format_attachment,
 			send_email=True,
