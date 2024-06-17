@@ -61,7 +61,8 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series",
-   "options": "SR-.YYYY.-.####"
+   "options": "SR-.YYYY.-.####",
+   "print_hide": 1
   },
   {
    "fieldname": "project",
@@ -273,7 +274,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Sourcing Stage",
-   "options": "\nInitial Supplier Request\nQuotation Eligible Supplier Request\nQualified Supplier Request"
+   "options": "\nInitial Supplier Request\nQuotation Eligible Supplier Request\nQualified Supplier Request\nCancelled"
   },
   {
    "collapsible": 1,
@@ -288,7 +289,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-31 05:37:15.398050",
+ "modified": "2024-06-17 06:16:17.524503",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Sourcing SR",

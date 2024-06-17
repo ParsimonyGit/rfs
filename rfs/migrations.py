@@ -4,6 +4,9 @@ def create_connections():
     update_dashboard_link_for_core_doctype(
         "Project", "Request For Sample RFS", "project", "Sourcing"
     )
+    update_dashboard_link_for_core_doctype(
+        "Project", "Sourcing SR", "project", "Sourcing"
+    )    
 
 def update_dashboard_link_for_core_doctype(
     doctype, link_doctype, link_fieldname, group=None
