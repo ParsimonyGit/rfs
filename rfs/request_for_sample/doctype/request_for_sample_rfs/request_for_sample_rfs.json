@@ -540,7 +540,7 @@
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-04-21 21:32:20.640292",
+ "modified": "2024-06-17 06:37:43.909294",
  "modified_by": "Administrator",
  "module": "Request For Sample",
  "name": "Request For Sample RFS",
@@ -567,7 +567,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Purchase Master Manager",
+   "role": "Purchase Manager",
    "share": 1,
    "write": 1
   },
@@ -579,7 +579,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Purchase Manager",
+   "role": "Purchase Master Manager",
    "share": 1,
    "write": 1
   },
