@@ -67,8 +67,8 @@ jinja = {
 # Installation
 # ------------
 
-# before_install = "rfs.install.before_install"
-after_install = "rfs.install.create_connections"
+before_install = "rfs.install.before_install"
+# after_install = "rfs.install.create_connections"
 after_migrate = "rfs.migrations.create_connections"
 # Uninstallation
 # ------------
@@ -195,5 +195,9 @@ fixtures = [
     {
         "doctype": "Print Format",
         "filters": {"name": "Sourcing Email PDF"}
+    },
+    {
+        "doctype": "Website Settings",
+        "filters": {"name": "Website Settings"}
     }
     ]
