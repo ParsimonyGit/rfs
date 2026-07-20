@@ -8,3 +8,6 @@ dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
 ]
+
+[tool.bench.dev-dependencies]
+frappe~=">=15.0.0"
