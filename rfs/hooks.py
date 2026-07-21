@@ -67,9 +67,13 @@ jinja = {
 # Installation
 # ------------
 
-before_install = "rfs.install.before_install"
+# before_install = "rfs.install.create_files_for_logo"
+# before_migrate = "rfs.install.create_files_for_logo"
 # after_install = "rfs.install.create_connections"
-after_migrate = "rfs.migrations.create_connections"
+after_migrate = [
+    "rfs.install.create_files_for_logo",
+    "rfs.migrations.create_connections",
+]
 # Uninstallation
 # ------------
 
