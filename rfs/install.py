@@ -16,7 +16,9 @@ def create_files_for_logo():
 			LIMIT 1;""",as_dict=True)
 	print("App logo file exists:-----------------", app_logo_file_exists)
 	if len(app_logo_file_exists)==1:
-		app_logo_file_url = frappe.db.get_value("File",app_logo_file_exists,"file_url")
+		# .sql(as_dict=True) returns [{"name": "..."}]; passing that list straight
+		# to get_value is not a valid filter and silently matches the wrong File.
+		app_logo_file_url = frappe.db.get_value("File",app_logo_file_exists[0].name,"file_url")
 		frappe.db.set_value("Website Settings","Website Settings","app_logo",app_logo_file_url)
 		frappe.db.set_value("Website Settings","Website Settings","favicon",app_logo_file_url)
 	else:
@@ -60,12 +62,7 @@ def create_files_for_logo():
 
 
 	##### Create New footer template
-	parsimony_footer_template_exists = frappe.db.exists("Web Template",{"name":"Parsimony Footer"})
-	if parsimony_footer_template_exists == None:
-		footer_template_doc = frappe.new_doc("Web Template")
-		footer_template_doc.__newname = "Parsimony Footer"
-		footer_template_doc.type = "Footer"
-		footer_template_doc.template = f"""
+	footer_template_html = f"""
 			<div class="footer row fixed-bottom" style="padding-left:6%; background-color: #0A7A83;">
 			<div class="col-sm-4" style="padding-top:5px">
 				<img src="{app_logo_file_url}" alt="Parsimony Logo" class="brand-logo-img" style="height: 50px; width: 40px" />
@@ -100,11 +97,39 @@ def create_files_for_logo():
 							</a>   
 				</div>
 			</div>
-		"""
+	"""
+
+	parsimony_footer_template_exists = frappe.db.exists("Web Template",{"name":"Parsimony Footer"})
+	if parsimony_footer_template_exists == None:
+		footer_template_doc = frappe.new_doc("Web Template")
+		footer_template_doc.__newname = "Parsimony Footer"
+		footer_template_doc.type = "Footer"
+		# MUST be 0. A "standard" Web Template is rendered from a file on disk
+		# (<app>/<module>/web_template/<name>/<name>.html) and Frappe blanks the
+		# `template` field on save. This app ships no such file, so a standard
+		# record makes every page extending base.html raise FileNotFoundError in
+		# the footer block: the whole website and Desk return 502 while the REST
+		# API keeps working, because /api/* never renders the footer.
+		footer_template_doc.standard = 0
+		footer_template_doc.template = footer_template_html
 		footer_template_doc.save(ignore_permissions=True)
 		frappe.db.commit()
 		print("Parsimony Footer Template is created.----------", footer_template_doc.name)
 		frappe.db.set_value("Website Settings", "Website Settings", "footer_template", footer_template_doc.name)
 	else :
 		print("Template already exists.............")
+		# Repair records created before standard=0 was set explicitly. Such a
+		# record renders from a file this app does not ship, which takes the
+		# whole website down; leaving it alone would strand every site that
+		# already ran the old code.
+		# Written with db.set_value, not doc.save(): Web Template.before_save
+		# calls import_from_files() on a standard->custom transition when
+		# developer_mode is on, and that reads the very file this app never
+		# ships -> FileNotFoundError. Bypass the document lifecycle.
+		if frappe.db.get_value("Web Template", parsimony_footer_template_exists, "standard"):
+			frappe.db.set_value("Web Template", parsimony_footer_template_exists, "standard", 0)
+			if not (frappe.db.get_value("Web Template", parsimony_footer_template_exists, "template") or "").strip():
+				frappe.db.set_value("Web Template", parsimony_footer_template_exists, "template", footer_template_html)
+			frappe.db.commit()
+			print("Parsimony Footer repaired: standard -> 0")
 		frappe.db.set_value("Website Settings", "Website Settings", "footer_template", parsimony_footer_template_exists)
