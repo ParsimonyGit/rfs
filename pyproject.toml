@@ -7,9 +7,11 @@ description = "Request for sample from supplier"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = [
-    "requests~=2.28.2",
-]
+# No third-party runtime dependencies. `requests` was pinned here at ~=2.28.2 but
+# is never imported by this app; because frappe requires requests~=2.33.0, the pin
+# actively downgraded the framework's own HTTP stack (requests 2.33 -> 2.28,
+# urllib3 2.x -> 1.26) on every `pip install -e rfs`. Nothing to replace it with.
+dependencies = []
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]
@@ -28,5 +30,8 @@ ensure_newline_before_comments = true
 indent = "\t"
 
 [tool.bench.frappe-dependencies]
-frappe = ">=15.0.0,<16.0.0"
-erpnext = ">=15.0.0,<16.0.0"
+# Verified against frappe 16.31.0 / erpnext 16.32.1: install-app, migrate and the
+# whole REST surface this app is consumed through work unchanged on v16. Kept
+# open at the bottom so a v15 bench still installs it.
+frappe = ">=15.0.0,<17.0.0"
+erpnext = ">=15.0.0,<17.0.0"
