@@ -67,11 +67,11 @@ jinja = {
 # Installation
 # ------------
 
-before_install = "rfs.install.create_files_for_logo"
-# before_migrate = "rfs.install.create_files_for_logo"
-# after_install = "rfs.install.create_connections"
-after_migrate = ["rfs.migrations.create_connections",
-                 "rfs.install.create_files_for_logo"]
+# Branding (Website Settings app_name/app_logo/favicon/splash and the "Parsimony
+# Footer" Web Template) moved to the `parsimony_branding` app. It never belonged
+# in a sourcing app: it made a cosmetic change able to 502 the entire ERP, and it
+# re-asserted itself on every migrate, silently undoing a tenant's own rename.
+after_migrate = ["rfs.migrations.create_connections"]
 
 # Uninstallation
 # ------------
@@ -139,7 +139,7 @@ doc_events = {
 # Testing
 # -------
 
-# before_tests = "rfs.install.before_tests"
+# before_tests = "rfs.tests.before_tests"
 
 # Overriding Methods
 # ------------------------------
@@ -198,9 +198,9 @@ fixtures = [
     {
         "doctype": "Print Format",
         "filters": {"name": "Sourcing Email PDF"}
-    },
-    {
-        "doctype": "Website Settings",
-        "filters": {"name": "Website Settings"}
     }
     ]
+# NOTE: "Website Settings" was listed here. It is a frappe-owned Single holding
+# per-tenant configuration -- exporting it would capture one tenant's settings
+# into the repo and re-import them over every other tenant's, including the
+# footer_template pointer that caused the outage.
