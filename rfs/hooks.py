@@ -76,7 +76,7 @@ after_migrate = ["rfs.migrations.create_connections",
 # Uninstallation
 # ------------
 
-# before_uninstall = "rfs.uninstall.before_uninstall"
+before_uninstall = "rfs.uninstall.before_uninstall"
 # after_uninstall = "rfs.uninstall.after_uninstall"
 
 # Desk Notifications
